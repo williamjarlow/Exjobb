@@ -6,10 +6,9 @@ public class AerialMovement : StateMachineBehaviour
 {
 
     [SerializeField]
-    string airAccelerationName, airDecelerationName, airMaxSpeedName;
+    string airAccelerationName, airMaxSpeedName;
 
     float acceleration;
-    float deceleration;
     float maxSpeed;
 
     SpriteRenderer spriteRenderer;
@@ -19,35 +18,31 @@ public class AerialMovement : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         acceleration = animator.GetFloat(airAccelerationName);
-        deceleration = animator.GetFloat(airDecelerationName);
         maxSpeed = animator.GetFloat(airMaxSpeedName);
         spriteRenderer = animator.GetComponentInParent<SpriteRenderer>();
         thisRB2D = animator.GetComponentInParent<Rigidbody2D>();
     }
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         MoveHorizontal();
     }
     void MoveHorizontal()
     {
-        if (Input.GetAxisRaw("Horizontal") > 0)
+        float inputDirection = Input.GetAxisRaw("Horizontal");
+        if (inputDirection != 0)
         {
-            spriteRenderer.flipX = true;
-            if (thisRB2D.velocity.x < maxSpeed)
-                thisRB2D.velocity += new Vector2(acceleration, 0);
-        }
-
-        else if (Input.GetAxisRaw("Horizontal") < 0)
-        {
-            spriteRenderer.flipX = false;
-            if (thisRB2D.velocity.x < -maxSpeed)
+            spriteRenderer.flipX = inputDirection > 0;
+            if (inputDirection < 0)
             {
-                thisRB2D.velocity += new Vector2(deceleration, 0);
+                if (thisRB2D.velocity.x > -maxSpeed)
+                    thisRB2D.velocity -= new Vector2(acceleration, 0);
             }
-            else
-                thisRB2D.velocity -= new Vector2(acceleration, 0);
+            else if (inputDirection > 0)
+            {
+                if (thisRB2D.velocity.x < maxSpeed)
+                    thisRB2D.velocity += new Vector2(acceleration, 0);
+            }
         }
     }
 

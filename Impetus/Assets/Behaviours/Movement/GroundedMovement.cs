@@ -29,38 +29,21 @@ public class GroundedMovement : StateMachineBehaviour {
     }
     void MoveHorizontal()
     {
-        if (Input.GetAxisRaw("Horizontal") > 0)
+        float direction = Mathf.Sign(thisRB2D.velocity.x);
+        float inputDirection = Input.GetAxisRaw("Horizontal");
+        if (inputDirection != 0)
         {
-            spriteRenderer.flipX = true;
-            if (thisRB2D.velocity.x > maxSpeed)
-            {//if not grounded, don't slow down
-                thisRB2D.velocity -= new Vector2(deceleration, 0);
-            }
+            if (Mathf.Abs(thisRB2D.velocity.x) > maxSpeed)
+                thisRB2D.velocity -= new Vector2(deceleration * direction, 0);
             else
-                thisRB2D.velocity += new Vector2(acceleration, 0);
+                thisRB2D.velocity += new Vector2(acceleration * inputDirection, 0);
+            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") > 0;
         }
-
-        else if (Input.GetAxisRaw("Horizontal") < 0)
+        else
         {
-            spriteRenderer.flipX = false;
-            if (thisRB2D.velocity.x < -maxSpeed)
-            {
-                    thisRB2D.velocity += new Vector2(deceleration, 0);
-            }
-            else
-                thisRB2D.velocity -= new Vector2(acceleration, 0);
-        }
-
-        else if (thisRB2D.velocity.x > 0)//only if grounded
-        {
-            thisRB2D.velocity -= new Vector2(deceleration, 0);
-            if (thisRB2D.velocity.x < 0)
-                thisRB2D.velocity = new Vector2(0, thisRB2D.velocity.y);
-        }
-        else if (thisRB2D.velocity.x < 0)//only if grounded
-        {
-            thisRB2D.velocity += (new Vector2(deceleration, 0));
-            if (thisRB2D.velocity.x > 0)
+            thisRB2D.velocity -= new Vector2(deceleration * direction, 0);
+            if(thisRB2D.velocity.x < 0 && direction > 0 || 
+                thisRB2D.velocity.x > 0 && direction < 0)
                 thisRB2D.velocity = new Vector2(0, thisRB2D.velocity.y);
         }
     }
