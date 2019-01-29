@@ -42,7 +42,6 @@ public class Movement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && animator.GetInteger(jumpChargesName) > 0)
         {
-            Debug.Log(Time.time);
             animator.SetTrigger(jumpName);
             animator.SetBool(onGroundName, false);
         }
