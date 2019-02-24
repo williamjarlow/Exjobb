@@ -10,8 +10,8 @@ public class GroundedMovement : Movement {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
         if (onGround)
             jumpCharges = maxJumpCharges;
-    }
+    }*/
 }
