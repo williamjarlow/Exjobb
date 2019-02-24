@@ -696,11 +696,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde80ccb8b53e8b488c6eed99167db3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingName: Moving
-  jumpName: Jump
-  jumpChargesName: JumpCharges
-  onGroundName: OnGround
-  maxJumpChargesName: MaxJumpCharges
+  acceleration: 3
+  deceleration: 3
+  maxSpeed: 10
+  jumpSpeed: 20
+  maxJumpCharges: 2
+  jumpCharges: 2
 --- !u!4 &573555275
 Transform:
   m_ObjectHideFlags: 0
@@ -714,24 +715,17 @@ Transform:
   m_Father: {fileID: 311752797}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &573555276
-Animator:
-  serializedVersion: 3
+--- !u!114 &573555276
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 573555272}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1e8e8f63f518d094ea8c6aa712d82022, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11257a5363603c4a9638e8c05c26f25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &573555277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,10 +734,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 573555272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 327e20ab41075482dbf73cf04b78920a, type: 3}
+  m_Script: {fileID: 11500000, guid: d85e4648d5182ca43ae1700e8026d04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoUpdate: 1
 --- !u!1 &618781809
 GameObject:
   m_ObjectHideFlags: 0
