@@ -149,8 +149,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -554,18 +554,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  decelMult: 0.7
   accelConst: 1
+  airAccelConst: 1
   frictionConst: 0.6
-  airFrictionConst: 0.6
-  gravityConst: 0.8
-  terminalVelocity: 10
-  jumpHeight: 12
+  airFrictionMult: 0.6
+  gravityConst: 1.2
+  terminalVelocity: 20
+  jumpHeight: 20
   jumpBufferMax: 3
   jumpGraceMax: 2
-  jumpMaxTime: 15
+  jumpMaxTime: 12
   jumpMinTime: 2
   jumpChangeTime: 7
+  jumpCutoffDiv: 4
 --- !u!4 &573555275
 Transform:
   m_ObjectHideFlags: 0
