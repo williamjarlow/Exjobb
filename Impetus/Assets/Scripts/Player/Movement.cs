@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     float maxSpeed = 5;
 
     [SerializeField]
-    [Tooltip("Adds to your velocity when moving.")]
+    [Tooltip("Adds to your RB2D.velocity when moving.")]
     float accelConst = 2.5f;
 
     [SerializeField]
@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
     float airAccelConst = 1;
 
     [SerializeField]
-    [Tooltip("Subtracts from your velocity when not moving.")]
+    [Tooltip("Subtracts from your RB2D.velocity when not moving.")]
     float frictionConst = 0.6f;
 
     [SerializeField]
@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour
 
     [SerializeField]
     [Header("Vertical variables")]
-    [Tooltip("Adds downward velocity constantly.")]
+    [Tooltip("Adds downward RB2D.velocity constantly.")]
     float gravityConst = 0.8f;
 
     [SerializeField]
@@ -58,10 +58,10 @@ public class Movement : MonoBehaviour
     int jumpChangeTime = 7;
 
     [SerializeField]
-    [Tooltip("Divides upward velocity by this when letting go of space early in a jump.")]
+    [Tooltip("Divides upward RB2D.velocity by this when letting go of space early in a jump.")]
     int jumpCutoffDiv = 7;
 
-    Rigidbody2D thisRB2D;
+    Rigidbody2D RB2D;
     Animator animator;
     SpriteRenderer spriteRenderer;
     Transform parentTransform;
@@ -69,21 +69,17 @@ public class Movement : MonoBehaviour
     bool onGround, canJump, jumpActive;
     int jumpBuffer, jumpTimer, jumpGraceTimer;
     float jumpTimePercentage;
-    Vector2 speed;
+    Vector2 velocity;
 
     [SerializeField]
     [Header("Collision Detection")]
     [Tooltip("The layer mask used in floor detection.")]
     LayerMask environmentLayerMask;
 
-    [SerializeField]
-    [Tooltip("How close a floor has to be for the player to be counted as on the ground.")]
-    float leeway;
-
     // Use this for initialization
     void Start()
     {
-        thisRB2D = GetComponentInParent<Rigidbody2D>();
+        RB2D = GetComponentInParent<Rigidbody2D>();
         spriteRenderer = GetComponentInParent<SpriteRenderer>();
         parentTransform = GetComponentInParent<Transform>();
         animator = GetComponent<Animator>();
@@ -93,8 +89,6 @@ public class Movement : MonoBehaviour
     {
         MoveHorizontal();
         MoveVertical();
-        DetectCollisions();
-        ApplySpeed();
     }
 
     void Jump()
@@ -103,52 +97,37 @@ public class Movement : MonoBehaviour
         jumpActive = true;
     }
 
-    void DetectCollisions()
-    {
-        float playerWidth = spriteRenderer.sprite.rect.width / spriteRenderer.sprite.pixelsPerUnit;
-        float playerHeight = spriteRenderer.sprite.rect.height / spriteRenderer.sprite.pixelsPerUnit / 2;
-
-        RaycastHit2D ray = Physics2D.BoxCast(parentTransform.position, new Vector2(playerWidth, playerHeight), 0, speed, speed.magnitude, environmentLayerMask.value);
-        if (ray.collider != null)
-        {
-            onGround = (ray.distance < playerHeight + leeway);
-            //William kommer ihåg
-            Vector2 collisionDir = new Vector2(parentTransform.position.x, parentTransform.position.y) - ray.point;
-        }
-        jumpGraceTimer = onGround ? jumpGraceMax : jumpGraceTimer - 1;
-    }
-
     void MoveHorizontal()
     {
-        float direction = Mathf.Sign(speed.x);
+        float direction = Mathf.Sign(RB2D.velocity.x);
         float inputDirection = Input.GetAxisRaw("Horizontal");
         if (onGround) //Ground movement
         {
             if (inputDirection != 0)
             {
                 //Going too fast in a direction
-                if (Mathf.Abs(speed.x) > maxSpeed)
-                    speed -= new Vector2(accelConst * direction, 0);
+                if (Mathf.Abs(RB2D.velocity.x) > maxSpeed)
+                    RB2D.velocity -= new Vector2(accelConst * direction, 0);
 
                 //Accelerating in a direction
                 else
                 {
                     //Accelerate, or set speed to maxSpeed to stop fluctuations above the limit
-                    if (Mathf.Abs(speed.x) + Mathf.Abs(accelConst * inputDirection) < maxSpeed)
-                        speed += new Vector2(accelConst * inputDirection, 0);
+                    if (Mathf.Abs(RB2D.velocity.x) + Mathf.Abs(accelConst * inputDirection) < maxSpeed)
+                        RB2D.velocity += new Vector2(accelConst * inputDirection, 0);
                     else if (inputDirection == direction)
-                        speed = new Vector2(maxSpeed * inputDirection, speed.y);
+                        RB2D.velocity = new Vector2(maxSpeed * inputDirection, RB2D.velocity.y);
                     else
-                        speed -= new Vector2(frictionConst * direction, 0);
+                        RB2D.velocity -= new Vector2(frictionConst * direction, 0);
                 }
                 spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") > 0;
             }
             else //Not holding any key, stopping
             {
-                if (Mathf.Abs(speed.x) < frictionConst)
-                    speed = new Vector2(0, speed.y);
+                if (Mathf.Abs(RB2D.velocity.x) < frictionConst)
+                    RB2D.velocity = new Vector2(0, RB2D.velocity.y);
                 else
-                    speed -= new Vector2(frictionConst * direction, 0);
+                    RB2D.velocity -= new Vector2(frictionConst * direction, 0);
             }
         }
         else //Air movement
@@ -156,23 +135,23 @@ public class Movement : MonoBehaviour
             if (inputDirection != 0)
             {
                 //Accelerate when below max speed
-                if (Mathf.Abs(speed.x) + Mathf.Abs(airAccelConst * inputDirection) < maxSpeed)
-                    speed += new Vector2(airAccelConst * inputDirection, 0);
+                if (Mathf.Abs(RB2D.velocity.x) + Mathf.Abs(airAccelConst * inputDirection) < maxSpeed)
+                    RB2D.velocity += new Vector2(airAccelConst * inputDirection, 0);
                 //Decelerate when above max speed
                 else if (inputDirection == direction)
-                    speed -= new Vector2(frictionConst * airFrictionMult * inputDirection, 0);
+                    RB2D.velocity -= new Vector2(frictionConst * airFrictionMult * inputDirection, 0);
                 //Decelerate when changing direction
                 else
-                    speed -= new Vector2((airAccelConst + frictionConst * airFrictionMult) * direction, 0);
+                    RB2D.velocity -= new Vector2((airAccelConst + frictionConst * airFrictionMult) * direction, 0);
 
                 spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") > 0;
             }
             else //Not holding any key, stopping
             {
-                if (Mathf.Abs(speed.x) < frictionConst * airFrictionMult)
-                    speed = new Vector2(0, speed.y);
+                if (Mathf.Abs(RB2D.velocity.x) < frictionConst * airFrictionMult)
+                    RB2D.velocity = new Vector2(0, RB2D.velocity.y);
                 else
-                    speed -= new Vector2(frictionConst * airFrictionMult * direction, 0);
+                    RB2D.velocity -= new Vector2(frictionConst * airFrictionMult * direction, 0);
             }
         }
 
@@ -181,6 +160,8 @@ public class Movement : MonoBehaviour
     void MoveVertical()
     {
         canJump = (onGround == true || jumpGraceTimer > 0) && jumpActive == false;
+        jumpGraceTimer = onGround ? jumpGraceMax : jumpGraceTimer - 1;
+
         if (Input.GetButtonDown("Jump") && canJump)
         {
             Jump();
@@ -194,20 +175,20 @@ public class Movement : MonoBehaviour
                 if (jumpTimer >= jumpChangeTime)
                 {
                     jumpTimePercentage = 1 - ((float)(jumpTimer - jumpChangeTime) / jumpMaxTime);
-                    speed = new Vector2(speed.x, jumpHeight * jumpTimePercentage);
+                    RB2D.velocity = new Vector2(RB2D.velocity.x, jumpHeight * jumpTimePercentage);
                 }
 
                 else
                 {
-                    speed = new Vector2(speed.x, jumpHeight);
+                    RB2D.velocity = new Vector2(RB2D.velocity.x, jumpHeight);
                 }
             }
 
             //If letting go of jump early
             else if (!Input.GetButton("Jump")){
                 jumpActive = false;
-                if (speed.y > 0){
-                    speed = new Vector2(speed.x, speed.y / jumpCutoffDiv);
+                if (RB2D.velocity.y > 0){
+                    RB2D.velocity = new Vector2(RB2D.velocity.x, RB2D.velocity.y / jumpCutoffDiv);
                 }
             }
             jumpTimer++;
@@ -217,13 +198,20 @@ public class Movement : MonoBehaviour
             jumpActive = false;
 
         //Add gravity
-        if (speed.y > -terminalVelocity)
-            speed -= new Vector2(0, gravityConst);
+        if (RB2D.velocity.y > -terminalVelocity)
+            RB2D.velocity -= new Vector2(0, gravityConst);
     }
 
-    void ApplySpeed()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        thisRB2D.position += speed * Time.deltaTime;
+        int temp = 1 << collision.gameObject.layer; //bitshift to make layermask work.
+        if (temp == environmentLayerMask.value)
+            onGround = true;
     }
-    
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        int temp = 1 << collision.gameObject.layer; //bitshift to make layermask work.
+        if (temp == environmentLayerMask.value)
+            onGround = false;
+    }
 }
