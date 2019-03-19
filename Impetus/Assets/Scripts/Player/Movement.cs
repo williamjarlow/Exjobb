@@ -109,6 +109,9 @@ public class Movement : MonoBehaviour
         {
             if (inputDirection != 0)
             {
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                    animator.SetTrigger("Running");
+
                 //Going too fast in a direction
                 if (Mathf.Abs(RB2D.velocity.x) > maxSpeed)
                     RB2D.velocity -= new Vector2(accelConst * direction, 0);
