@@ -66,7 +66,10 @@ public class Movement : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Transform parentTransform;
 
-    bool onGround, canJump, jumpActive;
+    [HideInInspector]
+    public bool onGround;
+
+    bool canJump, jumpActive;
     int jumpBuffer, jumpTimer, jumpGraceTimer;
     float jumpTimePercentage;
     Vector2 velocity;

@@ -34,6 +34,8 @@ namespace AnimatorStateMachineUtil
     public class AnimatorStateMachineUtil : MonoBehaviour
     {
         public bool autoUpdate;
+        [SerializeField]
+        Animator anim;
         public Animator Animator {
             get {
                 return _animator;
@@ -49,7 +51,7 @@ namespace AnimatorStateMachineUtil
 
         void Awake()
         {
-            _animator = GetComponent<Animator>();
+            _animator = anim != null ? anim : GetComponent<Animator>();
             _lastStateLayers = new int[_animator.layerCount];
 
             DiscoverStateMethods();

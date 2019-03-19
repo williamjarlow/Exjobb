@@ -153,22 +153,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &311752795
-MonoBehaviour:
+--- !u!95 &311752795
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311752793}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfe91886f1bf88a41a28c9eb330397b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explanation: The skill order determines in which order the skill inputs should be
-    checked. For example, a neutral attack that can be performed at any time should
-    be low on the list, while a directional aerial attack should be higher.
-  skillOrder: []
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17afb412e56a2284eba07eb73cec6c45, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &311752796
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -541,6 +544,7 @@ MonoBehaviour:
   jumpMinTime: 2
   jumpChangeTime: 7
   jumpCutoffDiv: 4
+  onGround: 0
   environmentLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -1235,6 +1239,8 @@ GameObject:
   - component: {fileID: 1887351209}
   - component: {fileID: 1887351207}
   - component: {fileID: 1887351208}
+  - component: {fileID: 1887351210}
+  - component: {fileID: 1887351211}
   m_Layer: 0
   m_Name: Player Skills
   m_TagString: Untagged
@@ -1268,10 +1274,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb011205f3a6214fb116f0f1e07cb54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 20
+  paramName: ForwardThrust
+  skillAnimation: {fileID: 7400000, guid: 1dc94ae374a85f543a07172b106370c0, type: 2}
+  overrideMovement: 1
   player: {fileID: 0}
+  playerAnim: {fileID: 0}
+  movement: {fileID: 0}
   skillActive: 0
-  speed: 0
+  skillLinked: 0
+  speed: 20
 --- !u!114 &1887351208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1284,10 +1295,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d55cfb85c9f5242a42baea7e4e3f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 20
+  paramName: DownAttack
+  skillAnimation: {fileID: 7400000, guid: 802e5029890ecab42b0ee0c2e7a85a68, type: 2}
+  overrideMovement: 0
   player: {fileID: 0}
+  playerAnim: {fileID: 0}
+  movement: {fileID: 0}
   skillActive: 0
-  speed: 0
+  skillLinked: 0
 --- !u!114 &1887351209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1304,8 +1319,44 @@ MonoBehaviour:
     checked. For example, a neutral attack that can be performed at any time should
     be low on the list, while a directional aerial attack should be higher.
   skillOrder:
-  - {fileID: 1887351207}
+  - {fileID: 1887351210}
   - {fileID: 1887351208}
+  - {fileID: 1887351207}
+--- !u!114 &1887351210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887351205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 751ae924d3660cc41948dc96f8493171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paramName: Uppercut
+  skillAnimation: {fileID: 7400000, guid: a7f9774196c64cb43ae1e3ef5279632a, type: 2}
+  overrideMovement: 0
+  player: {fileID: 0}
+  playerAnim: {fileID: 0}
+  movement: {fileID: 0}
+  skillActive: 0
+  skillLinked: 0
+  speed: 2000
+--- !u!114 &1887351211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887351205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327e20ab41075482dbf73cf04b78920a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoUpdate: 1
+  anim: {fileID: 311752795}
 --- !u!1 &1896290327
 GameObject:
   m_ObjectHideFlags: 0

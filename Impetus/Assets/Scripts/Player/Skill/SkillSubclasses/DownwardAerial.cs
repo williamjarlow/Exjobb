@@ -4,34 +4,26 @@ using UnityEngine;
 
 public class DownwardAerial : Skill
 {
-    Rigidbody2D RB2D;
-    [SerializeField]
-    float speed;
-    float inputDirection = 0;
-    private void Start()
-    {
-        RB2D = player.GetComponent<Rigidbody2D>();
-    }
-    public override void StartSkill()
+    public override void OnSkillStart()
     {
 
     }
-    public override void UpdateSkill()
+    public override void OnSkillUpdate()
     {
-        inputDirection = Input.GetAxisRaw("Horizontal");
-        RB2D.velocity += inputDirection * new Vector2(speed, 0);
+        Debug.Log("aaa");
     }
-    public override void StopSkill()
+    public override void OnSkillStop()
     {
 
     }
-    public override bool HandleInput()
+    public override bool SkillInputPerformed()
     {
-        return (Input.GetButtonDown("Attack") && inputDirection != 0);
+        float inputDirHorizontal = Input.GetAxisRaw("Horizontal");
+        float inputDirVertical = Input.GetAxisRaw("Vertical");
+        return (Input.GetButtonDown("Attack") && inputDirVertical < 0 && inputDirHorizontal == 0);
     }
     public override bool SkillIsUsable()
     {
-        base.SkillIsUsable();
-        return false;
+        return (base.SkillIsUsable() && !movement.onGround);
     }
 }

@@ -4,43 +4,74 @@ using UnityEngine;
 
 public abstract class Skill : MonoBehaviour
 {
-    [Tooltip("Duration of the skill in frames.")]
-    public int duration;
+    const string idle = "Idle";
+    [SerializeField]
+    string paramName;
+    public AnimationClip skillAnimation;
+    [SerializeField]
+    bool overrideMovement;
     [HideInInspector]
     public GameObject player;
     [HideInInspector]
-    public bool skillActive;
-    int frames;
+    public Animator playerAnim;
+    [HideInInspector]
+    public Movement movement;
+    [HideInInspector]
+    public bool skillActive, skillLinked;
+    bool skillStarted;
     Skill[] skills;
-
+    
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
+        playerAnim = player.GetComponent<Animator>();
+        movement = player.GetComponentInChildren<Movement>();
         skills = gameObject.GetComponents<Skill>();
     }
 
     public void PseudoUpdate()
     {
-        if (SkillIsUsable() && HandleInput() && !skillActive)
-        {
-            StartSkill();
-            skillActive = true;
-        }
-        if (skillActive) {
-            if (frames < duration)
-            {
-                UpdateSkill();
-                frames++;
-            }
-            else
-            {
-                frames = 0;
-                StopSkill();
-            }
-        }
+        if (SkillInputPerformed() && SkillIsUsable())
+            _Start();
+        else if (skillActive)
+            _Update();
+        else if (skillLinked)
+            _Linked();
+        else if (skillStarted)
+            _Stop();
     }
+
+    void _Start()
+    {
+        playerAnim.SetTrigger(paramName);
+        OnSkillStart();
+        skillActive = true;
+        skillStarted = true;
+        movement.enabled = !overrideMovement;
+    }
+
+    void _Update()
+    {
+        OnSkillUpdate();
+    }
+
+    void _Linked()
+    {
+        skillLinked = false;
+        OnSkillStop();
+    }
+
+    void _Stop()
+    {
+        skillStarted = false;
+        playerAnim.SetTrigger(idle); //Always returns to idle, even when being overwritten by a separate move. Maybe rework the pseudoupdate code.
+        OnSkillStop();
+        if(overrideMovement)
+            movement.enabled = true;
+    }
+
     /// <summary>
-    /// Examines whether or not the player is in a state where they can use the skill. Needs to call "SkillIsUsable().base" instead of return true.
+    /// Examines whether or not the player is in a state where they can use the skill. Return "SkillIsUsable().base" instead of true if the skill shouldn't animation-cancel.
     /// </summary
     public virtual bool SkillIsUsable()
     {
@@ -52,17 +83,17 @@ public abstract class Skill : MonoBehaviour
     /// <summary>
     /// Examines whether or not the player has performed the neccessary inputs to use the skill.
     /// </summary>
-    public abstract bool HandleInput();
+    public abstract bool SkillInputPerformed();
     /// <summary>
     /// Behaviour for starting the skill. Gets called when player is allowed to use the skill and has performed the neccessary inputs.
     /// </summary>
-    public abstract void StartSkill();
+    public abstract void OnSkillStart();
     /// <summary>
     /// Behaviour for updating the skill. Gets called when skill is active.
     /// </summary>
-    public abstract void UpdateSkill();
+    public abstract void OnSkillUpdate();
     /// <summary>
     /// Behaviour for stopping the skill. Gets called when the duration of the skill has run out.
     /// </summary>
-    public abstract void StopSkill();
+    public abstract void OnSkillStop();
 }

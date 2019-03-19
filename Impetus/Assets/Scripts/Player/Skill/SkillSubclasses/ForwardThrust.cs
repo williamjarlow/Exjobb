@@ -8,30 +8,27 @@ public class ForwardThrust : Skill
     [SerializeField]
     float speed;
     float inputDirection = 0;
+    float direction;
     private void Start()
     {
         RB2D = player.GetComponent<Rigidbody2D>();
     }
-    public override void StartSkill()
+    public override void OnSkillStart()
     {
-
+        direction = inputDirection;
     }
-    public override void UpdateSkill()
+    public override void OnSkillUpdate()
     {
-        inputDirection = Input.GetAxisRaw("Horizontal");
-        RB2D.velocity += inputDirection * new Vector2(speed, 0);
+        RB2D.velocity = new Vector2(direction * speed, 0);
+        Debug.Log("bbb");
     }
-    public override void StopSkill()
+    public override void OnSkillStop()
     {
         
     }
-    public override bool HandleInput()
+    public override bool SkillInputPerformed()
     {
+        inputDirection = Input.GetAxisRaw("Horizontal");
         return (Input.GetButtonDown("Attack") && inputDirection != 0);
-    }
-    public override bool SkillIsUsable()
-    {
-        base.SkillIsUsable();
-        return false;
     }
 }
