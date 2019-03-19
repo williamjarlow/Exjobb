@@ -35,8 +35,6 @@ public abstract class Skill : MonoBehaviour
             _Start();
         else if (skillActive)
             _Update();
-        else if (skillLinked)
-            _Linked();
         else if (skillStarted)
             _Stop();
     }
@@ -55,16 +53,12 @@ public abstract class Skill : MonoBehaviour
         OnSkillUpdate();
     }
 
-    void _Linked()
-    {
-        skillLinked = false;
-        OnSkillStop();
-    }
-
     void _Stop()
     {
         skillStarted = false;
-        playerAnim.SetTrigger(idle); //Always returns to idle, even when being overwritten by a separate move. Maybe rework the pseudoupdate code.
+        if(!skillLinked)
+            playerAnim.SetTrigger(idle); //Always returns to idle, even when being overwritten by a separate move. Maybe rework the pseudoupdate code.
+        skillLinked = false;
         OnSkillStop();
         if(overrideMovement)
             movement.enabled = true;
