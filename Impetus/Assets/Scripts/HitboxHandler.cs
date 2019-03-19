@@ -11,13 +11,12 @@ public class HitboxHandler : MonoBehaviour
     {
         hitboxes.Add(Instantiate(hitboxPrefab, transform));
     }
-    public void DestroyHitbox(GameObject hitboxInstance)
+    public void DestroyHitboxes()
     {
         foreach (GameObject go in hitboxes)
-            if (go == hitboxInstance)
-            {
-                hitboxes.Remove(hitboxInstance);
-                Destroy(hitboxInstance);
-            }
+        {
+            hitboxes.Remove(go);
+            Destroy(go);
+        }
     }
 }

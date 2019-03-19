@@ -123,10 +123,9 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.23333333
-    functionName: DestroyHitbox
+    functionName: DestroyHitboxes
     data: 
-    objectReferenceParameter: {fileID: 1762828390751881029, guid: 490745d31ff0f8549a3930cd19c0439f,
-      type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
