@@ -85,7 +85,7 @@ public class Movement : MonoBehaviour
         RB2D = GetComponentInParent<Rigidbody2D>();
         spriteRenderer = GetComponentInParent<SpriteRenderer>();
         parentTransform = GetComponentInParent<Transform>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInParent<Animator>();
     }
 
     void Update()
@@ -98,6 +98,7 @@ public class Movement : MonoBehaviour
     {
         jumpTimer = 0;
         jumpActive = true;
+        animator.SetTrigger("Jumping");
     }
 
     void MoveHorizontal()
@@ -209,7 +210,10 @@ public class Movement : MonoBehaviour
     {
         int temp = 1 << collision.gameObject.layer; //bitshift to make layermask work.
         if (temp == environmentLayerMask.value)
+        {
             onGround = true;
+            animator.SetTrigger("Landing");
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
