@@ -4,10 +4,8 @@ using UnityEngine;
 
 public abstract class Skill : MonoBehaviour
 {
-    const string idle = "Idle";
     [SerializeField]
     string paramName;
-    public AnimationClip skillAnimation;
     [SerializeField]
     bool overrideMovement;
     [HideInInspector]
@@ -17,7 +15,7 @@ public abstract class Skill : MonoBehaviour
     [HideInInspector]
     public Movement movement;
     [HideInInspector]
-    public bool skillActive, skillLinked;
+    public bool skillActive;
     bool skillStarted;
     Skill[] skills;
     
@@ -41,11 +39,11 @@ public abstract class Skill : MonoBehaviour
 
     void _Start()
     {
-        playerAnim.SetTrigger(paramName);
         OnSkillStart();
         skillActive = true;
         skillStarted = true;
         movement.enabled = !overrideMovement;
+        playerAnim.SetTrigger(paramName);
     }
 
     void _Update()
@@ -56,9 +54,6 @@ public abstract class Skill : MonoBehaviour
     void _Stop()
     {
         skillStarted = false;
-        if(!skillLinked)
-            playerAnim.SetTrigger(idle); //Always returns to idle, even when being overwritten by a separate move. Maybe rework the pseudoupdate code.
-        skillLinked = false;
         OnSkillStop();
         if(overrideMovement)
             movement.enabled = true;
