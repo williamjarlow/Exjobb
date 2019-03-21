@@ -9,12 +9,16 @@ public class Movement : MonoBehaviour
     float maxSpeed = 5;
 
     [SerializeField]
+    [Tooltip("Max horizontal speed while sprinting.")]
+    float sprintMaxSpeed = 5;
+
+    [SerializeField]
     [Tooltip("Adds to your RB2D.velocity when moving.")]
     float accelConst = 2.5f;
 
     [SerializeField]
-    [Tooltip("Same as the above, except in the air.")]
-    float airAccelConst = 1;
+    [Tooltip("Adds to your RB2D.velocity while sprinting.")]
+    float sprintAccelConst = 2.5f;
 
     [SerializeField]
     [Tooltip("Subtracts from your RB2D.velocity when not moving.")]
@@ -69,7 +73,7 @@ public class Movement : MonoBehaviour
     [HideInInspector]
     public bool onGround;
 
-    bool canJump, jumpActive;
+    bool canJump, jumpActive, sprinting;
     int jumpBuffer, jumpTimer, jumpGraceTimer;
     float jumpTimePercentage;
     Vector2 velocity;
@@ -109,26 +113,52 @@ public class Movement : MonoBehaviour
         {
             if (inputDirection != 0)
             {
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-                    animator.SetTrigger("Running");
-
-                //Going too fast in a direction
-                if (Mathf.Abs(RB2D.velocity.x) > maxSpeed)
-                    RB2D.velocity -= new Vector2(accelConst * direction, 0);
-
-                //Accelerating in a direction
-                else
+                if (Input.GetButton("Sprint")) //If sprinting
                 {
-                    //Accelerate, or set speed to maxSpeed to stop fluctuations above the limit
-                    if (Mathf.Abs(RB2D.velocity.x) + Mathf.Abs(accelConst * inputDirection) < maxSpeed)
-                        RB2D.velocity += new Vector2(accelConst * inputDirection, 0);
-                    else if (inputDirection == direction)
-                        RB2D.velocity = new Vector2(maxSpeed * inputDirection, RB2D.velocity.y);
+                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                        animator.SetTrigger("Running");
+
+                    //Going too fast in a direction
+                    if (Mathf.Abs(RB2D.velocity.x) > sprintMaxSpeed)
+                        RB2D.velocity -= new Vector2(sprintAccelConst * direction, 0);
+
+                    //Accelerating in a direction
                     else
-                        RB2D.velocity -= new Vector2(frictionConst * direction, 0);
+                    {
+                        //Accelerate, or set speed to maxSpeed to stop fluctuations above the limit
+                        if (Mathf.Abs(RB2D.velocity.x) + Mathf.Abs(sprintAccelConst * inputDirection) < sprintMaxSpeed)
+                            RB2D.velocity += new Vector2(sprintAccelConst * inputDirection, 0);
+                        else if (inputDirection == direction)
+                            RB2D.velocity = new Vector2(sprintMaxSpeed * inputDirection, RB2D.velocity.y);
+                        else
+                            RB2D.velocity -= new Vector2(frictionConst * direction, 0);
+                    }
                 }
+                else //If not sprinting
+                {
+                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                        animator.SetTrigger("Running");
+
+                    //Going too fast in a direction
+                    if (Mathf.Abs(RB2D.velocity.x) > maxSpeed)
+                        RB2D.velocity -= new Vector2(accelConst * direction, 0);
+
+                    //Accelerating in a direction
+                    else
+                    {
+                        //Accelerate, or set speed to maxSpeed to stop fluctuations above the limit
+                        if (Mathf.Abs(RB2D.velocity.x) + Mathf.Abs(accelConst * inputDirection) < maxSpeed)
+                            RB2D.velocity += new Vector2(accelConst * inputDirection, 0);
+                        else if (inputDirection == direction)
+                            RB2D.velocity = new Vector2(maxSpeed * inputDirection, RB2D.velocity.y);
+                        else
+                            RB2D.velocity -= new Vector2(frictionConst * direction, 0);
+                    }
+                }
+                
                 spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") > 0;
             }
+
             else //Not holding any key, stopping
             {
                 if (Mathf.Abs(RB2D.velocity.x) < frictionConst)
@@ -141,15 +171,30 @@ public class Movement : MonoBehaviour
         {
             if (inputDirection != 0)
             {
-                //Accelerate when below max speed
-                if (Mathf.Abs(RB2D.velocity.x) + Mathf.Abs(airAccelConst * inputDirection) < maxSpeed)
-                    RB2D.velocity += new Vector2(airAccelConst * inputDirection, 0);
-                //Decelerate when above max speed
-                else if (inputDirection == direction)
-                    RB2D.velocity -= new Vector2(frictionConst * airFrictionMult * inputDirection, 0);
-                //Decelerate when changing direction
+                if (Input.GetButton("Sprint")) //If sprinting
+                {
+                    //Accelerate when below max speed
+                    if (Mathf.Abs(RB2D.velocity.x) + Mathf.Abs(sprintAccelConst * inputDirection) < sprintMaxSpeed)
+                        RB2D.velocity += new Vector2(sprintAccelConst * inputDirection, 0);
+                    //Decelerate when above max speed
+                    else if (inputDirection == direction)
+                        RB2D.velocity -= new Vector2(frictionConst * airFrictionMult * inputDirection, 0);
+                    //Decelerate when changing direction
+                    else
+                        RB2D.velocity -= new Vector2((sprintAccelConst + frictionConst * airFrictionMult) * direction, 0);
+                }
                 else
-                    RB2D.velocity -= new Vector2((airAccelConst + frictionConst * airFrictionMult) * direction, 0);
+                {
+                    //Accelerate when below max speed
+                    if (Mathf.Abs(RB2D.velocity.x) + Mathf.Abs(accelConst * inputDirection) < maxSpeed)
+                        RB2D.velocity += new Vector2(accelConst * inputDirection, 0);
+                    //Decelerate when above max speed
+                    else if (inputDirection == direction)
+                        RB2D.velocity -= new Vector2(frictionConst * airFrictionMult * inputDirection, 0);
+                    //Decelerate when changing direction
+                    else
+                        RB2D.velocity -= new Vector2((accelConst + frictionConst * airFrictionMult) * direction, 0);
+                }
 
                 spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") > 0;
             }
