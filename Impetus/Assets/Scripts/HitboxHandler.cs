@@ -11,6 +11,8 @@ public class HitboxHandler : MonoBehaviour
     {
         hitboxes.Add(Instantiate(hitboxPrefab, transform));
     }
+
+
     public void DestroyHitboxes()
     {
         foreach (GameObject go in hitboxes)
