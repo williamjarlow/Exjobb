@@ -301,13 +301,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  accelConst: 1
-  airAccelConst: 1
-  frictionConst: 0.6
-  airFrictionMult: 0.6
+  sprintMaxSpeed: 15
+  accelConst: 2
+  sprintAccelConst: 2.5
+  frictionConst: 1
+  airFrictionMult: 0.8
   gravityConst: 1.2
-  terminalVelocity: 20
-  jumpHeight: 20
+  terminalVelocity: 25
+  jumpHeight: 25
   jumpBufferMax: 3
   jumpGraceMax: 2
   jumpMaxTime: 12
