@@ -18,8 +18,11 @@ public class DummyBehaviour : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("AttackHitbox"))
+        if (other.CompareTag("AttackHitbox"))
+        {
+            GameManager.instance.OnDummyDestroy();
             Destroy(gameObject);
-        //Create animation here
+            //Create animation here
+        }
     }
 }
