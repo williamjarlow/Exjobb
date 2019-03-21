@@ -736,6 +736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1127404101}
   - component: {fileID: 1127404106}
+  - component: {fileID: 1127404107}
   - component: {fileID: 1127404105}
   - component: {fileID: 1127404104}
   - component: {fileID: 1127404103}
@@ -847,9 +848,26 @@ MonoBehaviour:
     checked. For example, a neutral attack that can be performed at any time should
     be low on the list, while a directional aerial attack should be higher.
   skillOrder:
-  - {fileID: 1127404103}
   - {fileID: 1127404104}
-  - {fileID: 1127404105}
+  - {fileID: 1127404107}
+--- !u!114 &1127404107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127404100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d776d7335c6c6344849e5def4e6d16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paramName: LeftAttack
+  overrideMovement: 0
+  player: {fileID: 0}
+  playerAnim: {fileID: 0}
+  movement: {fileID: 0}
+  skillActive: 0
 --- !u!1 &1343843559
 GameObject:
   m_ObjectHideFlags: 0
