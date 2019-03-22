@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class Skill : MonoBehaviour
 {
-    [SerializeField]
-    string paramName;
+    [SerializeField] [ReadOnly]
+    public string paramName;
     [SerializeField]
     bool overrideMovement;
     [HideInInspector]
@@ -20,6 +20,11 @@ public abstract class Skill : MonoBehaviour
     Skill[] skills;
     
     private void Awake()
+    {
+        Initialize();   
+    }
+
+    public void Initialize()
     {
         player = GameObject.FindWithTag("Player");
         playerAnim = player.GetComponent<Animator>();

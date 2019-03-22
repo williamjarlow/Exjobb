@@ -789,6 +789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paramName: Uppercut
+  parameters: []
   overrideMovement: 0
   player: {fileID: 0}
   playerAnim: {fileID: 0}
@@ -808,6 +809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paramName: DownAttack
+  parameters: []
   overrideMovement: 0
   player: {fileID: 0}
   playerAnim: {fileID: 0}
@@ -826,6 +828,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paramName: ForwardThrust
+  parameters:
+  - name: 
+    boolValue: 0
+    numberValue: 0
   overrideMovement: 1
   player: {fileID: 0}
   playerAnim: {fileID: 0}
@@ -863,6 +869,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paramName: LeftAttack
+  parameters:
+  - name: 
+    boolValue: 0
+    numberValue: 0
   overrideMovement: 0
   player: {fileID: 0}
   playerAnim: {fileID: 0}
