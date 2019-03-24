@@ -19,7 +19,7 @@ public class NormalAttackRight : Skill
     public override bool SkillInputPerformed()
     {
         float horizontalInputDirection = Input.GetAxisRaw("Horizontal");
-        return (Input.GetButtonDown("Attack") && horizontalInputDirection > 0);
+        return (Input.GetButtonDown("Attack") && (horizontalInputDirection > 0 || player.GetComponent<SpriteRenderer>().flipX));
     }
     public override bool SkillIsUsable()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Skill : MonoBehaviour
 {
-    [SerializeField] [ReadOnly]
+    [HideInInspector]
     public string paramName;
     [SerializeField]
     bool overrideMovement;

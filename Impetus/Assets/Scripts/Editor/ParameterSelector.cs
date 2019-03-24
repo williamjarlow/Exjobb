@@ -12,7 +12,6 @@ public class ParameterSelector : Editor
     Animator animator;
     List<Parameter> parameters = new List<Parameter>();
     List<AnimatorControllerParameter> animParams = new List<AnimatorControllerParameter>();
-    int paramCount = 0;
 
     public void OnEnable()
     {

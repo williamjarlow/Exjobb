@@ -736,10 +736,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1127404101}
   - component: {fileID: 1127404106}
-  - component: {fileID: 1127404107}
-  - component: {fileID: 1127404105}
   - component: {fileID: 1127404104}
   - component: {fileID: 1127404103}
+  - component: {fileID: 1127404107}
+  - component: {fileID: 1127404105}
   - component: {fileID: 1127404102}
   m_Layer: 0
   m_Name: Player Skills
@@ -785,17 +785,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1127404100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 751ae924d3660cc41948dc96f8493171, type: 3}
+  m_Script: {fileID: 11500000, guid: f1aae7f80d614d54289261fdc5251fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paramName: Uppercut
-  parameters: []
+  paramName: UpAttack
   overrideMovement: 0
-  player: {fileID: 0}
-  playerAnim: {fileID: 0}
-  movement: {fileID: 0}
+  player: {fileID: 2032662332}
+  playerAnim: {fileID: 2032662335}
+  movement: {fileID: 459675927}
   skillActive: 0
-  speed: 2000
 --- !u!114 &1127404104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,11 +807,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paramName: DownAttack
-  parameters: []
   overrideMovement: 0
-  player: {fileID: 0}
-  playerAnim: {fileID: 0}
-  movement: {fileID: 0}
+  player: {fileID: 2032662332}
+  playerAnim: {fileID: 2032662335}
+  movement: {fileID: 459675927}
   skillActive: 0
 --- !u!114 &1127404105
 MonoBehaviour:
@@ -824,20 +821,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1127404100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cb011205f3a6214fb116f0f1e07cb54, type: 3}
+  m_Script: {fileID: 11500000, guid: d73d76efb61f91f4f9c0af6018a58760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paramName: ForwardThrust
-  parameters:
-  - name: 
-    boolValue: 0
-    numberValue: 0
-  overrideMovement: 1
-  player: {fileID: 0}
-  playerAnim: {fileID: 0}
-  movement: {fileID: 0}
+  paramName: RightAttack
+  overrideMovement: 0
+  player: {fileID: 2032662332}
+  playerAnim: {fileID: 2032662335}
+  movement: {fileID: 459675927}
   skillActive: 0
-  speed: 20
 --- !u!114 &1127404106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,6 +847,8 @@ MonoBehaviour:
     be low on the list, while a directional aerial attack should be higher.
   skillOrder:
   - {fileID: 1127404104}
+  - {fileID: 1127404103}
+  - {fileID: 1127404105}
   - {fileID: 1127404107}
 --- !u!114 &1127404107
 MonoBehaviour:
@@ -869,14 +863,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paramName: LeftAttack
-  parameters:
-  - name: 
-    boolValue: 0
-    numberValue: 0
   overrideMovement: 0
-  player: {fileID: 0}
-  playerAnim: {fileID: 0}
-  movement: {fileID: 0}
+  player: {fileID: 2032662332}
+  playerAnim: {fileID: 2032662335}
+  movement: {fileID: 459675927}
   skillActive: 0
 --- !u!1 &1343843559
 GameObject:

@@ -221,7 +221,13 @@ public class Movement : MonoBehaviour
 
         if (jumpActive && jumpTimer < jumpMaxTime)
         {
-            if (jumpTimer < jumpMinTime || Input.GetButton("Jump"))
+            Vector2 size = spriteRenderer.sprite.rect.size / spriteRenderer.sprite.pixelsPerUnit;
+            RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.position, size, 0, Vector2.up, Mathf.Abs(RB2D.velocity.y*Time.deltaTime), environmentLayerMask.value);
+            bool ceilingCollision =  raycastHit2D.collider != null;
+
+            if (ceilingCollision)
+                jumpTimer = jumpMaxTime;
+            else if (jumpTimer < jumpMinTime || Input.GetButton("Jump"))
             {
                 //If at the end of the jump
                 if (jumpTimer >= jumpChangeTime)
@@ -235,11 +241,12 @@ public class Movement : MonoBehaviour
                     RB2D.velocity = new Vector2(RB2D.velocity.x, jumpHeight);
                 }
             }
-
             //If letting go of jump early
-            else if (!Input.GetButton("Jump")){
+            else if (!Input.GetButton("Jump"))
+            {
                 jumpActive = false;
-                if (RB2D.velocity.y > 0){
+                if (RB2D.velocity.y > 0)
+                {
                     RB2D.velocity = new Vector2(RB2D.velocity.x, RB2D.velocity.y / jumpCutoffDiv);
                 }
             }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DownwardAerial : Skill
+public class NormalAttackDown : Skill
 {
     public override void OnSkillStart()
     {
@@ -10,7 +10,7 @@ public class DownwardAerial : Skill
     }
     public override void OnSkillUpdate()
     {
-        Debug.Log("aaa");
+
     }
     public override void OnSkillStop()
     {
@@ -18,9 +18,8 @@ public class DownwardAerial : Skill
     }
     public override bool SkillInputPerformed()
     {
-        float inputDirHorizontal = Input.GetAxisRaw("Horizontal");
         float inputDirVertical = Input.GetAxisRaw("Vertical");
-        return (Input.GetButtonDown("Attack") && inputDirVertical < 0 && inputDirHorizontal == 0);
+        return (Input.GetButtonDown("Attack") && inputDirVertical < 0);
     }
     public override bool SkillIsUsable()
     {
