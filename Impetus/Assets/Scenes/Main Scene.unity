@@ -315,6 +315,8 @@ MonoBehaviour:
   jumpMinTime: 2
   jumpChangeTime: 7
   jumpCutoffDiv: 4
+  jumpChargeTime: 15
+  jumpChargeMult: 1.5
   onGround: 0
   environmentLayerMask:
     serializedVersion: 2
@@ -812,6 +814,7 @@ MonoBehaviour:
   playerAnim: {fileID: 2032662335}
   movement: {fileID: 459675927}
   skillActive: 0
+  force: 15
 --- !u!114 &1127404105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1398,9 +1401,9 @@ GameObject:
   - component: {fileID: 2032662338}
   - component: {fileID: 2032662337}
   - component: {fileID: 2032662336}
-  - component: {fileID: 2032662335}
   - component: {fileID: 2032662334}
   - component: {fileID: 2032662333}
+  - component: {fileID: 2032662335}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1537,7 +1540,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f988128ddcd931f48854eda1dbc52b55, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

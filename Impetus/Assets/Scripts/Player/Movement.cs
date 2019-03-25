@@ -65,6 +65,15 @@ public class Movement : MonoBehaviour
     [Tooltip("Divides upward RB2D.velocity by this when letting go of space early in a jump.")]
     int jumpCutoffDiv = 7;
 
+    [SerializeField]
+    [Header("Jump charge variables")]
+    [Tooltip("How long it takes for the jump to charge.")]
+    int jumpChargeTime = 15;
+
+    [SerializeField]
+    [Tooltip("Height multiplier for charged jumps.")]
+    float jumpChargeMult = 1.2f;
+
     Rigidbody2D RB2D;
     Animator animator;
     SpriteRenderer spriteRenderer;
@@ -73,9 +82,9 @@ public class Movement : MonoBehaviour
     [HideInInspector]
     public bool onGround;
 
-    bool canJump, jumpActive, sprinting;
-    int jumpBuffer, jumpTimer, jumpGraceTimer;
-    float jumpTimePercentage;
+    bool canJump, jumpActive, jumpCharged, sprinting;
+    int jumpBuffer, jumpTimer, jumpGraceTimer, jumpChargeTimer;
+    float jumpTimePercentage, _jumpChargeMult = 1;
     Vector2 velocity;
 
     [SerializeField]
@@ -103,6 +112,7 @@ public class Movement : MonoBehaviour
         jumpTimer = 0;
         jumpActive = true;
         animator.SetTrigger("Jumping");
+        jumpChargeTimer = 0;
     }
 
     void MoveHorizontal()
@@ -209,6 +219,42 @@ public class Movement : MonoBehaviour
 
     }
 
+    void HandleDuckInput()
+    {
+
+        bool duckingInput = Input.GetAxisRaw("Vertical") < 0;
+
+        bool idleState = animator.GetCurrentAnimatorStateInfo(0).IsName("Idle");
+        bool duckingState = animator.GetCurrentAnimatorStateInfo(0).IsName("Ducking");
+        bool chargingState = animator.GetCurrentAnimatorStateInfo(0).IsName("ChargedJump");
+
+        if (onGround)
+        {
+            
+            //Ducking
+            if (idleState && duckingInput)
+                animator.SetTrigger("Ducking");
+
+            //Charging jump
+            if (duckingState && duckingInput)
+            {
+                jumpChargeTimer++;
+                if (!chargingState && jumpChargeTimer >= jumpChargeTime)
+                {
+                    animator.SetTrigger("ChargedJump");
+                    _jumpChargeMult = jumpChargeMult;
+                }
+            }
+        }
+        //Cancelling charge
+        if ((duckingState || chargingState) && (!duckingInput || Input.GetAxisRaw("Horizontal") != 0 || !onGround))
+        {
+            animator.SetTrigger("Idle");
+            _jumpChargeMult = 1;
+            jumpChargeTimer = 0;
+        }
+    }
+
     void MoveVertical()
     {
         canJump = (onGround == true || jumpGraceTimer > 0) && jumpActive == false;
@@ -218,6 +264,8 @@ public class Movement : MonoBehaviour
         {
             Jump();
         }
+        //For ducking and charge jumping
+        HandleDuckInput();
 
         if (jumpActive && jumpTimer < jumpMaxTime)
         {
@@ -233,12 +281,12 @@ public class Movement : MonoBehaviour
                 if (jumpTimer >= jumpChangeTime)
                 {
                     jumpTimePercentage = 1 - ((float)(jumpTimer - jumpChangeTime) / jumpMaxTime);
-                    RB2D.velocity = new Vector2(RB2D.velocity.x, jumpHeight * jumpTimePercentage);
+                    RB2D.velocity = new Vector2(RB2D.velocity.x, jumpHeight * _jumpChargeMult * jumpTimePercentage);
                 }
 
                 else
                 {
-                    RB2D.velocity = new Vector2(RB2D.velocity.x, jumpHeight);
+                    RB2D.velocity = new Vector2(RB2D.velocity.x, jumpHeight * _jumpChargeMult);
                 }
             }
             //If letting go of jump early
@@ -267,6 +315,7 @@ public class Movement : MonoBehaviour
         if (temp == environmentLayerMask.value)
         {
             onGround = true;
+            _jumpChargeMult = 1;
             animator.SetTrigger("Landing");
         }
     }
