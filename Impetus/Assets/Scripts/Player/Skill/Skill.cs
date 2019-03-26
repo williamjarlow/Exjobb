@@ -26,7 +26,7 @@ public abstract class Skill : MonoBehaviour
 
     public void Initialize()
     {
-        player = GameObject.FindWithTag("Player");
+        player = GetComponentInParent<Rigidbody2D>().gameObject;
         playerAnim = player.GetComponent<Animator>();
         movement = player.GetComponentInChildren<Movement>();
         skills = gameObject.GetComponents<Skill>();

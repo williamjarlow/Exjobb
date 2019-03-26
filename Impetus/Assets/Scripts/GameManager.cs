@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public int dummiesDestroyed = 0;
-    private int sceneIndex = 0;
+    private int sceneIndex = 1;
 
     // Start is called before the first frame update
     void Awake()

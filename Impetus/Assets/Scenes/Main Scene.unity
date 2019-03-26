@@ -742,7 +742,7 @@ GameObject:
   - component: {fileID: 1127404103}
   - component: {fileID: 1127404107}
   - component: {fileID: 1127404105}
-  - component: {fileID: 1127404102}
+  - component: {fileID: 1127404108}
   m_Layer: 0
   m_Name: Player Skills
   m_TagString: Untagged
@@ -764,20 +764,6 @@ Transform:
   m_Father: {fileID: 2032662339}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1127404102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127404100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 327e20ab41075482dbf73cf04b78920a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  autoUpdate: 1
-  anim: {fileID: 2032662335}
 --- !u!114 &1127404103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,6 +852,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paramName: LeftAttack
+  overrideMovement: 0
+  player: {fileID: 2032662332}
+  playerAnim: {fileID: 2032662335}
+  movement: {fileID: 459675927}
+  skillActive: 0
+--- !u!114 &1127404108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127404100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f685ccd7a749d334c97e93d1f064a1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paramName: Idle
   overrideMovement: 0
   player: {fileID: 2032662332}
   playerAnim: {fileID: 2032662335}
@@ -1402,7 +1406,6 @@ GameObject:
   - component: {fileID: 2032662337}
   - component: {fileID: 2032662336}
   - component: {fileID: 2032662334}
-  - component: {fileID: 2032662333}
   - component: {fileID: 2032662335}
   m_Layer: 0
   m_Name: Player
@@ -1411,19 +1414,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2032662333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032662332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94d34dcac5af0a14e990688dd24bd25a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOnHit: 0
 --- !u!114 &2032662334
 MonoBehaviour:
   m_ObjectHideFlags: 0

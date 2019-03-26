@@ -35,8 +35,9 @@ public class AttackBehaviour : MonoBehaviour
     public void EndAttack()
     {
         GetComponentInParent<Animator>().SetTrigger("Idle");
-        Skill _skill = (Skill)FindObjectOfType(skill.Type);
-        _skill.skillActive = false;
+        Skill[] skills = (Skill[])FindObjectsOfType(skill.Type);
+        foreach(Skill skill in skills)
+            skill.skillActive = false;
     }
 
 }
