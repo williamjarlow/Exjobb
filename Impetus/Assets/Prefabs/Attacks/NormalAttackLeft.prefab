@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 725585980}
   - component: {fileID: 725585978}
   m_Layer: 0
-  m_Name: NormalAttackDown
-  m_TagString: Untagged
+  m_Name: NormalAttackLeft
+  m_TagString: AttackHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762828390751881029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2, y: 0, z: 0}
+  m_LocalPosition: {x: -2.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,7 +51,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5714285, y: 1.7142857}
+    oldSize: {x: 3.4285715, y: 2.5714285}
     newSize: {x: 2.5714285, y: 1.7142857}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -113,9 +113,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: db47f437d8e020e4d95c55eb34fea9d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 79ce03ed8f931f44bb6b9bcd91129c60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.5714285, y: 1.7142857}
@@ -137,10 +137,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteList:
-  - {fileID: 21300000, guid: db47f437d8e020e4d95c55eb34fea9d8, type: 3}
-  - {fileID: 21300002, guid: db47f437d8e020e4d95c55eb34fea9d8, type: 3}
-  - {fileID: 21300004, guid: db47f437d8e020e4d95c55eb34fea9d8, type: 3}
-  - {fileID: 21300006, guid: db47f437d8e020e4d95c55eb34fea9d8, type: 3}
-  - {fileID: 21300008, guid: db47f437d8e020e4d95c55eb34fea9d8, type: 3}
+  - {fileID: 21300002, guid: 79ce03ed8f931f44bb6b9bcd91129c60, type: 3}
+  - {fileID: 21300004, guid: 79ce03ed8f931f44bb6b9bcd91129c60, type: 3}
+  - {fileID: 21300006, guid: 79ce03ed8f931f44bb6b9bcd91129c60, type: 3}
+  - {fileID: 21300008, guid: 79ce03ed8f931f44bb6b9bcd91129c60, type: 3}
+  - {fileID: 21300010, guid: 79ce03ed8f931f44bb6b9bcd91129c60, type: 3}
   skill:
-    _classRef: NormalAttackDown, Assembly-CSharp
+    _classRef: NormalAttackLeft, Assembly-CSharp
