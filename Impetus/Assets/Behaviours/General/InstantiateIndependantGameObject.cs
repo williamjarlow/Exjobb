@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InstantiateIndependantGameObject : StateMachineBehaviour {
-    [SerializeField][Header("Instantiates prefab as child of animator object.")]
+    [SerializeField][Header("Instantiates prefab independently of animator object.")]
     GameObject prefab;
-    [SerializeField][Tooltip("Check this if position should be equal to object position")]
-    bool useOwnPosition;
+    [SerializeField][Tooltip("Check this if instantiated object's position should be equal to animator object's position.")]
+    bool inheritPosition;
     [SerializeField]
     Vector2 position;
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        Instantiate(prefab, animator.transform);
+        if (!inheritPosition)
+            Instantiate(prefab, position, new Quaternion());
+        else
+            Instantiate(prefab, animator.transform.position, animator.transform.rotation);
 	}
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

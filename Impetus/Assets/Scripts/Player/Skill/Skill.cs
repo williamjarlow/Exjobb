@@ -7,7 +7,7 @@ public abstract class Skill : MonoBehaviour
     [HideInInspector]
     public string paramName;
     [SerializeField]
-    bool overrideMovement;
+    bool overrideMovement, overridable;
     [HideInInspector]
     public GameObject player;
     [HideInInspector]
@@ -47,7 +47,8 @@ public abstract class Skill : MonoBehaviour
         OnSkillStart();
         skillActive = true;
         skillStarted = true;
-        movement.enabled = !overrideMovement;
+        if(movement != null)
+            movement.enabled = !overrideMovement;
         playerAnim.SetTrigger(paramName);
     }
 
@@ -70,7 +71,7 @@ public abstract class Skill : MonoBehaviour
     public virtual bool SkillIsUsable()
     {
         foreach (Skill skill in skills)
-            if (skill.skillActive)
+            if (skill.skillActive && !skill.overridable)
                 return false;
         return true;
     }
