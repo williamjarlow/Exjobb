@@ -106,7 +106,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 48
-        width: 36
+        width: 60
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,7 +115,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dfcc89509c0d714296e74132fc49b49
+      spriteID: 1f9ac04e888a57c4ea5c03127cca7146
       vertices: []
       indices: 
       edges: []
@@ -124,9 +124,9 @@ TextureImporter:
       name: AttackDownSpritesheet_1
       rect:
         serializedVersion: 2
-        x: 36
+        x: 60
         y: 48
-        width: 36
+        width: 60
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -135,7 +135,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d51bc4e13aa663489f0dc2e8e7e8f76
+      spriteID: aeae22e528fa65d43885e82b3635dff7
       vertices: []
       indices: 
       edges: []
@@ -144,9 +144,9 @@ TextureImporter:
       name: AttackDownSpritesheet_2
       rect:
         serializedVersion: 2
-        x: 72
+        x: 120
         y: 48
-        width: 36
+        width: 60
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -155,7 +155,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bce5b9c0dd80714a8e5794e065c0410
+      spriteID: 0cc7c60f0fbb1034ca18d172f6263004
       vertices: []
       indices: 
       edges: []
@@ -166,7 +166,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 36
+        width: 60
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -175,7 +175,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8c86726733706744828a5122e48b6e6
+      spriteID: bdb861ef33232c348946330127b3c35c
       vertices: []
       indices: 
       edges: []
@@ -184,9 +184,9 @@ TextureImporter:
       name: AttackDownSpritesheet_4
       rect:
         serializedVersion: 2
-        x: 36
+        x: 60
         y: 0
-        width: 36
+        width: 60
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -195,7 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72d1586452c174641a30e2adfd2ea087
+      spriteID: fc1749b02470d7646802ac27d1af9e30
       vertices: []
       indices: 
       edges: []
@@ -204,9 +204,9 @@ TextureImporter:
       name: AttackDownSpritesheet_5
       rect:
         serializedVersion: 2
-        x: 72
+        x: 120
         y: 0
-        width: 36
+        width: 60
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -215,7 +215,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02502b32b6e0896498de477e3f02f90a
+      spriteID: 74dfaf3ca73ef724099c417d03d0c8f9
       vertices: []
       indices: 
       edges: []
