@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalAttackLeft : Skill
+public class AttackUp : Skill
 {
     public override void OnSkillStart()
     {
@@ -10,7 +10,7 @@ public class NormalAttackLeft : Skill
     }
     public override void OnSkillUpdate()
     {
-        Debug.Log("Normal attack");
+        Debug.Log("Up attack");
     }
     public override void OnSkillStop()
     {
@@ -18,8 +18,8 @@ public class NormalAttackLeft : Skill
     }
     public override bool SkillInputPerformed()
     {
-        float horizontalInputDirection = Input.GetAxisRaw("Horizontal");
-        return (Input.GetButtonDown("Attack") && (horizontalInputDirection < 0 || !player.GetComponent<SpriteRenderer>().flipX));
+        float verticalInputDirection = Input.GetAxisRaw("Vertical");
+        return (Input.GetButtonDown("Attack") && verticalInputDirection > 0);
     }
     public override bool SkillIsUsable()
     {

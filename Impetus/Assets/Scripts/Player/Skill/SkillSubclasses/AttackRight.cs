@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalAttackRight : Skill
+public class AttackRight : Skill
 {
     public override void OnSkillStart()
     {

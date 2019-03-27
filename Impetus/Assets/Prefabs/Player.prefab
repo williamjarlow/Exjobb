@@ -101,8 +101,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1176007434060902468}
   - component: {fileID: 1176007434060902475}
-  - component: {fileID: 1176007434060902473}
   - component: {fileID: 1176007434060902470}
+  - component: {fileID: 1176007434060902473}
   - component: {fileID: 1176007434060902474}
   - component: {fileID: 1176007434060902472}
   - component: {fileID: 1176007434060902477}
@@ -148,6 +148,25 @@ MonoBehaviour:
   - {fileID: 1176007434060902470}
   - {fileID: 1176007434060902472}
   - {fileID: 1176007434060902474}
+--- !u!114 &1176007434060902470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176007434060902469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1aae7f80d614d54289261fdc5251fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paramName: UpAttack
+  overrideMovement: 0
+  overridable: 0
+  player: {fileID: 1176007434498348349}
+  playerAnim: {fileID: 1176007434498348350}
+  movement: {fileID: 1176007432850111254}
+  skillActive: 0
 --- !u!114 &1176007434060902473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,25 +187,6 @@ MonoBehaviour:
   movement: {fileID: 1176007432850111254}
   skillActive: 0
   force: 15
---- !u!114 &1176007434060902470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176007434060902469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1aae7f80d614d54289261fdc5251fd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paramName: UpAttack
-  overrideMovement: 0
-  overridable: 0
-  player: {fileID: 1176007434498348349}
-  playerAnim: {fileID: 1176007434498348350}
-  movement: {fileID: 1176007432850111254}
-  skillActive: 0
 --- !u!114 &1176007434060902474
 MonoBehaviour:
   m_ObjectHideFlags: 0

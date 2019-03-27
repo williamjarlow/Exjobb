@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 725585980}
   - component: {fileID: 725585978}
   m_Layer: 0
-  m_Name: NormalAttackDown
+  m_Name: AttackDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5714285, y: 3.4285715}
+    oldSize: {x: 4.285714, y: 3.4285715}
     newSize: {x: 2.5714285, y: 1.7142857}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -143,4 +143,4 @@ MonoBehaviour:
   - {fileID: 21300008, guid: 729559ec79eba9748b1c2a0de024c517, type: 3}
   - {fileID: 21300010, guid: 729559ec79eba9748b1c2a0de024c517, type: 3}
   skill:
-    _classRef: NormalAttackDown, Assembly-CSharp
+    _classRef: AttackDown, Assembly-CSharp

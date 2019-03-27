@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalAttackDown : Skill
+public class AttackDown : Skill
 {
     [SerializeField]
     float force;

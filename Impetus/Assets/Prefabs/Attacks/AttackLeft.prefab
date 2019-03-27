@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 725585980}
   - component: {fileID: 725585978}
   m_Layer: 0
-  m_Name: NormalAttackLeft
+  m_Name: AttackLeft
   m_TagString: AttackHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,4 +143,4 @@ MonoBehaviour:
   - {fileID: 21300008, guid: 79ce03ed8f931f44bb6b9bcd91129c60, type: 3}
   - {fileID: 21300010, guid: 79ce03ed8f931f44bb6b9bcd91129c60, type: 3}
   skill:
-    _classRef: NormalAttackLeft, Assembly-CSharp
+    _classRef: AttackLeft, Assembly-CSharp
