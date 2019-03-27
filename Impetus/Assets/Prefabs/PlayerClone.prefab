@@ -106,7 +106,8 @@ GameObject:
   - component: {fileID: 5876728763832471534}
   - component: {fileID: 3925938400409811588}
   - component: {fileID: 1176027693873150367}
-  m_Layer: 0
+  - component: {fileID: 4079620686789788330}
+  m_Layer: 9
   m_Name: PlayerClone
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -270,6 +271,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.714286, y: 1.714286}
   m_EdgeRadius: 0
+--- !u!114 &4079620686789788330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876728763832471535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47fb286cccba3284cb49ffd980cb80ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer1:
+    serializedVersion: 2
+    m_Bits: 512
+  layer2:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &5876728763891284098
 GameObject:
   m_ObjectHideFlags: 0

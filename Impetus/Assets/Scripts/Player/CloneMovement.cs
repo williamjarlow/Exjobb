@@ -97,12 +97,20 @@ public class CloneMovement : MonoBehaviour
     {
         RB2D = GetComponentInParent<Rigidbody2D>();
         parentTransform = GetComponentInParent<Transform>();
+        spriteRenderer = GetComponentInParent<SpriteRenderer>();
         animator = GetComponentInParent<Animator>();
     }
 
     void Update()
     {
+        MoveHorizontal();
         MoveVertical();
+    }
+
+    void MoveHorizontal()
+    {
+        if (Input.GetAxisRaw("Horizontal") < 0 || Input.GetAxisRaw("Horizontal") > 0)
+            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") > 0;
     }
 
     void MoveVertical()
@@ -119,7 +127,6 @@ public class CloneMovement : MonoBehaviour
         {
             onGround = true;
             _jumpChargeMult = 1;
-            animator.SetTrigger("Landing");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
