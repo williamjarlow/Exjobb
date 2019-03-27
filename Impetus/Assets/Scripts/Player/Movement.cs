@@ -269,7 +269,7 @@ public class Movement : MonoBehaviour
 
         if (jumpActive && jumpTimer < jumpMaxTime)
         {
-            Vector2 size = spriteRenderer.sprite.rect.size / spriteRenderer.sprite.pixelsPerUnit;
+            Vector2 size = spriteRenderer.sprite.rect.size / (spriteRenderer.sprite.pixelsPerUnit*1.2f);
             RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.position, size, 0, Vector2.up, Mathf.Abs(RB2D.velocity.y*Time.deltaTime), environmentLayerMask.value);
             bool ceilingCollision =  raycastHit2D.collider != null;
 
@@ -317,6 +317,14 @@ public class Movement : MonoBehaviour
             onGround = true;
             _jumpChargeMult = 1;
             animator.SetTrigger("Landing");
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        int temp = 1 << collision.gameObject.layer; //bitshift to make layermask work.
+        if (temp == environmentLayerMask.value)
+        {
+            onGround = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

@@ -7,14 +7,20 @@ public class NormalAttackDown : Skill
     [SerializeField]
     float force;
     Rigidbody2D RB2D;
+    bool chargeAvailable;
     void Start()
     {
         RB2D = player.GetComponent<Rigidbody2D>();
     }
-
+    private void Update()
+    {
+        if (movement.onGround)
+            chargeAvailable = true;
+    }
     public override void OnSkillStart()
     {
-        RB2D.velocity = (new Vector2(RB2D.velocity.x, force));
+        chargeAvailable = false;
+        RB2D.velocity = new Vector2(RB2D.velocity.x, force);
     }
     public override void OnSkillUpdate()
     {
@@ -31,6 +37,6 @@ public class NormalAttackDown : Skill
     }
     public override bool SkillIsUsable()
     {
-        return (base.SkillIsUsable() && !movement.onGround);
+        return (base.SkillIsUsable() && !movement.onGround && chargeAvailable);
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 53810950341429848}
   - component: {fileID: 53810950341429854}
   - component: {fileID: 53810950341429849}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,5 +117,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7142857, y: 1.7142857}
+  m_Size: {x: 1.714286, y: 1.714286}
   m_EdgeRadius: 0
