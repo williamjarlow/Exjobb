@@ -10,7 +10,6 @@ public class AttackUp : Skill
     }
     public override void OnSkillUpdate()
     {
-        Debug.Log("Up attack");
     }
     public override void OnSkillStop()
     {

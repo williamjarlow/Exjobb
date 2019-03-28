@@ -18,8 +18,6 @@ public class GenerateClone : Skill
     }
     public override bool SkillInputPerformed()
     {
-        if (Input.GetButtonDown("Clone"))
-            Debug.Log("reeee");
         return Input.GetButtonDown("Clone");
     }
     public override bool SkillIsUsable()

@@ -10,7 +10,6 @@ public class AttackLeft : Skill
     }
     public override void OnSkillUpdate()
     {
-        Debug.Log("Normal attack");
     }
     public override void OnSkillStop()
     {
