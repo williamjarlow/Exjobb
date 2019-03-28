@@ -4,8 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Attack
-  - TestAttack
   - AttackHitbox
   layers:
   - Default

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5808418041515914726}
   - component: {fileID: 5635199361416905180}
   - component: {fileID: 7097146992527507898}
+  - component: {fileID: 406952484}
   m_Layer: 0
   m_Name: TargetDummy
   m_TagString: Untagged
@@ -69,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c35d9e207b302f6469fe893a7f79f847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 43f925d8cfb75504ba6ea477d5e23824, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -90,9 +91,21 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &406952484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5347601966134249805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a3a17270cd0454a930384b5c922034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

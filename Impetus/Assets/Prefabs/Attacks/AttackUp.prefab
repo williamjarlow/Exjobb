@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 725585978}
   m_Layer: 0
   m_Name: AttackUp
-  m_TagString: Untagged
+  m_TagString: AttackHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

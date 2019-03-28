@@ -6,7 +6,7 @@ using TypeReferences;
 public class AttackBehaviour : MonoBehaviour
 {
     [SerializeField] List<Sprite> spriteList;
-    [SerializeField] [ClassExtends(typeof(Skill))] ClassTypeReference skill;
+    [ClassExtends(typeof(Skill))] public ClassTypeReference skill;
     SpriteRenderer spriteRenderer;
     int index;
 

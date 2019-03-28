@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public void OnDummyDestroy()
     {
         dummiesDestroyed++;
-        StartCoroutine("LoadNextScene");
+        //StartCoroutine("LoadNextScene");
     }
 
     IEnumerator LoadNextScene()
