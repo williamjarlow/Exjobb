@@ -55,10 +55,17 @@ public class GlossaryController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Attack"))
-            OpenTab(--index);
-        else if (Input.GetButtonDown("Clone"))
-            OpenTab(++index);
+        if (Input.GetButtonDown("Attack") && index > 0)
+        {
+            index--;
+            OpenTab(index);
+        }
+        else if (Input.GetButtonDown("Clone") && index < tabs.Count - 1)
+        {
+            index++;
+            OpenTab(index);
+        }
+        
     }
 
     void OpenTab(int index = 0)

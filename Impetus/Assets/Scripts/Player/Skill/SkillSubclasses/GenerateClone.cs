@@ -22,7 +22,7 @@ public class GenerateClone : Skill
     }
     public override bool SkillIsUsable()
     {
-        int playerCount = GameObject.FindGameObjectsWithTag("Player").Length;
-        return base.SkillIsUsable() && playerCount == 1;
+        int cloneCount = GameObject.FindGameObjectsWithTag("Clone").Length;
+        return base.SkillIsUsable() && cloneCount == 0;
     }
 }

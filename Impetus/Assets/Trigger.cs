@@ -28,16 +28,22 @@ public class Trigger : MonoBehaviour
         flag = true;
         if(actors.Count > 0)
         {
-            bool exists = true;
+            bool exists = false;
             foreach(Collider2D actor in actors)
             {
-                if (actor == null)
-                    exists = false;
+                if (actor != null)
+                    exists = true;
             }
             if (!exists)
+            {
                 Deactivate();
+                actors.Clear();
+            }  
         }
-
+        else if(triggered)
+        {
+            Deactivate();
+        }
     }
    
     private void OnTriggerEnter2D(Collider2D collision)
@@ -60,7 +66,7 @@ public class Trigger : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (agentTags.Contains(collision.gameObject.tag) && !permanent && flag) {
-            Deactivate();
+            Deactivate(collision);
         }
     }
 
@@ -68,16 +74,19 @@ public class Trigger : MonoBehaviour
     {
         flag = false;
         spriteRenderer.sprite = activated;
-
+        triggered = true;
         foreach (DoorHandler door in doors)
         {
             door.Open();
         }
     }
 
-    void Deactivate()
+    void Deactivate(Collider2D col = null)
     {
+        if (col != null)
+            actors.Remove(col);
         spriteRenderer.sprite = deactivated;
+        triggered = false;
         foreach (DoorHandler door in doors)
         {
             door.Close();
