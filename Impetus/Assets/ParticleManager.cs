@@ -28,34 +28,17 @@ public class ParticleManager : MonoBehaviour
     public void EmitParticles(ClassTypeReference skillUsed)
     {
         ParticleSystem particleSystem = GetComponent<ParticleSystem>();
-        ParticleSystem.ShapeModule shape = particleSystem.shape;
-        ParticleSystem.VelocityOverLifetimeModule velocity = particleSystem.velocityOverLifetime;
-        Vector3 curRot = shape.rotation;
-
-        if (velocity.enabled == false)
-            velocity.enabled = true;
+        ParticleSystem.ShapeModule temp = particleSystem.shape;
+        Vector3 curRot = temp.rotation;
 
         if (skillUsed.Type == typeof(AttackLeft))
-        {
-            shape.rotation = new Vector3((int)Direction.LEFT, curRot.y, curRot.z);
-        }
-            
+            temp.rotation = new Vector3((int)Direction.LEFT, curRot.y, curRot.z);
         else if (skillUsed.Type == typeof(AttackRight))
-        {
-            shape.rotation = new Vector3((int)Direction.RIGHT, curRot.y, curRot.z);
-        }
-            
+            temp.rotation = new Vector3((int)Direction.RIGHT, curRot.y, curRot.z);
         else if (skillUsed.Type == typeof(AttackUp))
-        {
-            shape.rotation = new Vector3((int)Direction.UP, curRot.y, curRot.z);
-        }
-            
+            temp.rotation = new Vector3((int)Direction.UP, curRot.y, curRot.z);
         else if (skillUsed.Type == typeof(AttackDown))
-        {
-            shape.rotation = new Vector3((int)Direction.DOWN, curRot.y, curRot.z);
-            velocity.enabled = false;
-        }
-            
+            temp.rotation = new Vector3((int)Direction.DOWN, curRot.y, curRot.z);
 
         particleSystem.Play();
     }
