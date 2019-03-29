@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 47266425152100396}
   - component: {fileID: 5941815662401713619}
-  - component: {fileID: 818521797534469447}
+  - component: {fileID: 823392126413855097}
   m_Layer: 0
   m_Name: Barrier
   m_TagString: Untagged
@@ -80,15 +80,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &818521797534469447
-MonoBehaviour:
+--- !u!61 &823392126413855097
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7946818218957957172}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21a50bdf85df94243a1fafb69bd614c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.7142857, y: 1.7142857}
+    newSize: {x: 1.7142857, y: 1.7142857}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.7142857, y: 1.7142857}
+  m_EdgeRadius: 0

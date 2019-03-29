@@ -5,15 +5,21 @@ using UnityEngine;
 public class IgnoreCollisionLayer : MonoBehaviour
 {
     [SerializeField]
-    LayerMask layer1, layer2;
+    LayerMask layer;
     // Start is called before the first frame update
     void Start()
     {
+        int i = 0;
         int temp1 = gameObject.layer;
-        int temp2 = gameObject.layer;
-        //Debug.Log("layer1: " + layer1.value + ", temp1: " + temp1);
-        //Debug.Log("layer2: " + layer2.value + ", temp2: " + temp2);
-        Physics2D.IgnoreLayerCollision(temp1, temp2, true);
+        int temp2 = layer.value;
+        while (temp2 >= 2)
+        {
+            i++;
+            temp2 /= 2;
+        }
+        Debug.Log("temp1: " + temp1);
+        Debug.Log("temp2: " + i);
+        Physics2D.IgnoreLayerCollision(temp1, i, true);
     }
 
     // Update is called once per frame

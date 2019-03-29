@@ -90,7 +90,7 @@ public class Movement : MonoBehaviour
     [SerializeField]
     [Header("Collision Detection")]
     [Tooltip("The layer mask used in floor detection.")]
-    LayerMask environmentLayerMask;
+    LayerMask environmentLayerMask, barrierLayerMask;
 
     // Use this for initialization
     void Start()
@@ -312,7 +312,7 @@ public class Movement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         int temp = 1 << collision.gameObject.layer; //bitshift to make layermask work.
-        if (temp == environmentLayerMask.value)
+        if (temp == environmentLayerMask.value || temp == barrierLayerMask.value)
         {
             onGround = true;
             _jumpChargeMult = 1;
@@ -322,7 +322,7 @@ public class Movement : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         int temp = 1 << collision.gameObject.layer; //bitshift to make layermask work.
-        if (temp == environmentLayerMask.value)
+        if (temp == environmentLayerMask.value || temp == barrierLayerMask.value)
         {
             onGround = true;
         }
@@ -330,7 +330,7 @@ public class Movement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         int temp = 1 << collision.gameObject.layer; //bitshift to make layermask work.
-        if (temp == environmentLayerMask.value)
+        if (temp == environmentLayerMask.value || temp == barrierLayerMask.value)
             onGround = false;
     }
 }
