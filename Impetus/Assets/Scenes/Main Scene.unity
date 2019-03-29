@@ -5049,10 +5049,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 406952484, guid: b6f010ddd655213469fb7ddd2a63ce73, type: 3}
-      propertyPath: attackLeft._classRef
-      value: AttackLeft, Assembly-CSharp
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6f010ddd655213469fb7ddd2a63ce73, type: 3}
 --- !u!1 &736321798
@@ -5984,11 +5980,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trigger
       objectReference: {fileID: 0}
-    - target: {fileID: 1622127331773821098, guid: fe4e94ff6eaa30f44a838266f52823c7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 1622127331773821108, guid: fe4e94ff6eaa30f44a838266f52823c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6044,33 +6035,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1622127331773821108, guid: fe4e94ff6eaa30f44a838266f52823c7,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1622127331773821108, guid: fe4e94ff6eaa30f44a838266f52823c7,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1622127331773821109, guid: fe4e94ff6eaa30f44a838266f52823c7,
         type: 3}
       propertyPath: doors.Array.data[0]
       value: 
       objectReference: {fileID: 1860670156}
-    - target: {fileID: 1622127331773821109, guid: fe4e94ff6eaa30f44a838266f52823c7,
-        type: 3}
-      propertyPath: activated
-      value: 
-      objectReference: {fileID: 21300002, guid: d33509c197d60b440830500844aac831,
-        type: 3}
-    - target: {fileID: 1622127331773821109, guid: fe4e94ff6eaa30f44a838266f52823c7,
-        type: 3}
-      propertyPath: deactivated
-      value: 
-      objectReference: {fileID: 21300000, guid: d33509c197d60b440830500844aac831,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe4e94ff6eaa30f44a838266f52823c7, type: 3}
 --- !u!1 &1665699989

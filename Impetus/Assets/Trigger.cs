@@ -5,7 +5,7 @@ using UnityEngine;
 public class Trigger : MonoBehaviour
 {
     [SerializeField]
-    string agentTag;
+    List<string> agentTags;
     [SerializeField]
     bool permanent;
     [SerializeField]
@@ -42,7 +42,7 @@ public class Trigger : MonoBehaviour
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == agentTag)
+        if (agentTags.Contains(collision.gameObject.tag))
         {
             actors.Add(collision);
             Activate();
@@ -51,7 +51,7 @@ public class Trigger : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == agentTag)
+        if (agentTags.Contains(collision.gameObject.tag))
         {
             Activate();
         }
@@ -59,7 +59,7 @@ public class Trigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == agentTag && !permanent && flag) {
+        if (agentTags.Contains(collision.gameObject.tag) && !permanent && flag) {
             Deactivate();
         }
     }

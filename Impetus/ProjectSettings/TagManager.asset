@@ -8,6 +8,7 @@ TagManager:
   - Toggleable
   - Indicator
   - Tab
+  - Clone
   layers:
   - Default
   - TransparentFX

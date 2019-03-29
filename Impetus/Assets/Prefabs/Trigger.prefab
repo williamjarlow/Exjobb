@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7070996233433775692}
   - component: {fileID: 8070625174676005164}
   - component: {fileID: 8790892001244930895}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1622127331773821098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -47,10 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4a2384c08bcd74388992fe68179004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentTag: Player
+  agentTags:
+  - Player
+  - Clone
   permanent: 0
   doors:
   - {fileID: 0}
+  activated: {fileID: 21300002, guid: d33509c197d60b440830500844aac831, type: 3}
+  deactivated: {fileID: 21300000, guid: d33509c197d60b440830500844aac831, type: 3}
 --- !u!61 &1622127331773821111
 BoxCollider2D:
   m_ObjectHideFlags: 0
