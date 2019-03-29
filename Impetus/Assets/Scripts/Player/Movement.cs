@@ -269,13 +269,13 @@ public class Movement : MonoBehaviour
 
         if (jumpActive && jumpTimer < jumpMaxTime)
         {
-            Vector2 size = spriteRenderer.sprite.rect.size / (spriteRenderer.sprite.pixelsPerUnit*1.2f);
-            RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.position, size, 0, Vector2.up, Mathf.Abs(RB2D.velocity.y*Time.deltaTime), environmentLayerMask.value);
+            /*Vector2 size = spriteRenderer.sprite.rect.size / (spriteRenderer.sprite.pixelsPerUnit*1.2f);
+            RaycastHit2D raycastHit2D = Physics2D.BoxCast(GetComponentInParent<Transform>().position, size, 0, Vector2.up, Mathf.Abs(RB2D.velocity.y*Time.deltaTime), environmentLayerMask.value);
             bool ceilingCollision =  raycastHit2D.collider != null;
 
             if (ceilingCollision)
                 jumpTimer = jumpMaxTime;
-            else if (jumpTimer < jumpMinTime || Input.GetButton("Jump"))
+            else*/ if (jumpTimer < jumpMinTime || Input.GetButton("Jump"))
             {
                 //If at the end of the jump
                 if (jumpTimer >= jumpChangeTime)

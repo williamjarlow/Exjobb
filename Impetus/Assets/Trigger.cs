@@ -11,10 +11,15 @@ public class Trigger : MonoBehaviour
     [SerializeField]
     DoorHandler[] doors;
     bool flag;
+    [SerializeField]
+    Sprite activated, deactivated;
+
+
+    SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -27,6 +32,8 @@ public class Trigger : MonoBehaviour
     {
         if(collision.gameObject.tag == agentTag) {
             flag = false;
+            spriteRenderer.sprite = activated;
+
             foreach(DoorHandler door in doors)
             {
                 door.Open();
@@ -37,6 +44,7 @@ public class Trigger : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == agentTag && !permanent && flag) {
+            spriteRenderer.sprite = deactivated;
             foreach (DoorHandler door in doors)
             {
                 door.Close();
