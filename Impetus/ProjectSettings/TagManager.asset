@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - AttackHitbox
+  - Toggleable
+  - Indicator
+  - Tab
   layers:
   - Default
   - TransparentFX
