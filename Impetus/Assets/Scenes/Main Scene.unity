@@ -367,8 +367,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: -10
-      minScalar: 0
+      scalar: -15
+      minScalar: -3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -483,7 +483,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1174,7 +1174,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 5
+        scalar: 8
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1618,7 +1618,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     enabled: 1
-    mode: 0
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -1736,11 +1736,11 @@ ParticleSystem:
     uvChannelMask: -1
     randomRow: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: deb2a04e8b2f8b54c9ab63f9ad233293, type: 3}
+    - sprite: {fileID: 21300000, guid: 07244155bec2c8046bd3827da245bdcf, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -1797,7 +1797,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3528,10 +3528,10 @@ ParticleSystem:
     range: {x: 0, y: 1}
     separateAxes: 0
   RotationBySpeedModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -3584,7 +3584,7 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -3637,9 +3637,9 @@ ParticleSystem:
         m_RotationOrder: 4
     curve:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 3.4906585
-      minScalar: 0.7853982
+      minMaxState: 3
+      scalar: -17.453293
+      minScalar: -5.2359877
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4911,7 +4911,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 89e8479671d772c439a5f7f8384fcd8e, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -5279,6 +5279,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3726966195562493555, guid: caad1ff6a91c0754db27938187e37518,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3726966195562493519, guid: caad1ff6a91c0754db27938187e37518,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5383,21 +5388,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7124717347850843094, guid: caad1ff6a91c0754db27938187e37518,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.2924528
-      objectReference: {fileID: 0}
-    - target: {fileID: 7124717347850843094, guid: caad1ff6a91c0754db27938187e37518,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.2924528
-      objectReference: {fileID: 0}
-    - target: {fileID: 7124717347850843094, guid: caad1ff6a91c0754db27938187e37518,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.2924528
       objectReference: {fileID: 0}
     - target: {fileID: 7230252312156820351, guid: caad1ff6a91c0754db27938187e37518,
         type: 3}
@@ -5508,6 +5498,21 @@ PrefabInstance:
         type: 3}
       propertyPath: inactiveTextColor.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124717347850843094, guid: caad1ff6a91c0754db27938187e37518,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.2924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124717347850843094, guid: caad1ff6a91c0754db27938187e37518,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.2924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124717347850843094, guid: caad1ff6a91c0754db27938187e37518,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.2924528
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caad1ff6a91c0754db27938187e37518, type: 3}
@@ -5979,15 +5984,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trigger
       objectReference: {fileID: 0}
+    - target: {fileID: 1622127331773821098, guid: fe4e94ff6eaa30f44a838266f52823c7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1622127331773821108, guid: fe4e94ff6eaa30f44a838266f52823c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.89
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1622127331773821108, guid: fe4e94ff6eaa30f44a838266f52823c7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.12
+      value: -4.76
       objectReference: {fileID: 0}
     - target: {fileID: 1622127331773821108, guid: fe4e94ff6eaa30f44a838266f52823c7,
         type: 3}
@@ -6034,11 +6044,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1622127331773821108, guid: fe4e94ff6eaa30f44a838266f52823c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1622127331773821108, guid: fe4e94ff6eaa30f44a838266f52823c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1622127331773821109, guid: fe4e94ff6eaa30f44a838266f52823c7,
         type: 3}
       propertyPath: doors.Array.data[0]
       value: 
       objectReference: {fileID: 1860670156}
+    - target: {fileID: 1622127331773821109, guid: fe4e94ff6eaa30f44a838266f52823c7,
+        type: 3}
+      propertyPath: activated
+      value: 
+      objectReference: {fileID: 21300002, guid: d33509c197d60b440830500844aac831,
+        type: 3}
+    - target: {fileID: 1622127331773821109, guid: fe4e94ff6eaa30f44a838266f52823c7,
+        type: 3}
+      propertyPath: deactivated
+      value: 
+      objectReference: {fileID: 21300000, guid: d33509c197d60b440830500844aac831,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe4e94ff6eaa30f44a838266f52823c7, type: 3}
 --- !u!1 &1665699989
@@ -6225,6 +6257,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 53810950341429854, guid: 69a9f2f72b3bf574099b1567a388e531,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 53810950341429854, guid: 69a9f2f72b3bf574099b1567a388e531,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 53810950341429854, guid: 69a9f2f72b3bf574099b1567a388e531,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.14746547
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a9f2f72b3bf574099b1567a388e531, type: 3}
