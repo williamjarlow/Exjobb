@@ -18,54 +18,83 @@ public class Tab
 public class GlossaryController : MonoBehaviour
 {
     List<Tab> tabs = new List<Tab>();
-
+    List<GameObject> children = new List<GameObject>();
     [SerializeField]
     Color activeColor, inactiveColor, activeTextColor, inactiveTextColor;
 
     int index = 0;
+    bool glossaryOpen = true;
     
     // Start is called before the first frame update
     void Start()
     {
-        foreach (Transform transform in GetComponentsInChildren<Transform>())
+        foreach (Transform child in GetComponentsInChildren<Transform>())
+            if(child.gameObject != gameObject)
+                children.Add(child.gameObject);
+        foreach (GameObject child in children)
         {
-            if (transform.CompareTag("Tab"))
+            if (child.CompareTag("Tab"))
             {
                 Tab tab = new Tab();
-                tab.container = transform.gameObject;
+                tab.container = child.gameObject;
                 tabs.Add(tab);
 
             }
         }
         foreach(Tab tab in tabs)
         {
-            foreach (Transform transform in tab.container.GetComponentsInChildren<Transform>())
+            foreach (Transform child in tab.container.GetComponentsInChildren<Transform>())
             {
-                if (transform.CompareTag("Toggleable"))
-                    tab.content = transform.gameObject;
-                else if (transform.CompareTag("Indicator"))
+                if (child.CompareTag("Toggleable"))
+                    tab.content = child.gameObject;
+                else if (child.CompareTag("Indicator"))
                 {
-                    tab.indicator = transform.GetComponent<Image>();
+                    tab.indicator = child.GetComponent<Image>();
                     tab.title = tab.indicator.GetComponentInChildren<Text>();
                 }
             }
         }
         OpenTab(0);
+        ToggleGlossary();
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown("Attack") && index > 0)
+        if (Input.GetButtonDown("Start"))
+        {
+            ToggleGlossary();
+        }
+        else if (Input.GetButtonDown("Attack") && index > 0 && glossaryOpen)
         {
             index--;
             OpenTab(index);
         }
-        else if (Input.GetButtonDown("Clone") && index < tabs.Count - 1)
+        else if (Input.GetButtonDown("Clone") && index < tabs.Count - 1 && glossaryOpen)
         {
             index++;
             OpenTab(index);
         }
+
         
+    }
+
+    void ToggleGlossary()
+    {
+        if (glossaryOpen)
+        {
+            foreach (GameObject child in children)
+            {
+                child.SetActive(false);
+            }
+        }
+        else
+        {
+            foreach (GameObject child in children)
+            {
+                child.SetActive(true);
+            }
+        }
+        glossaryOpen = !glossaryOpen;
     }
 
     void OpenTab(int index = 0)

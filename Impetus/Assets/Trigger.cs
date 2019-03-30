@@ -50,7 +50,8 @@ public class Trigger : MonoBehaviour
     {
         if (agentTags.Contains(collision.gameObject.tag))
         {
-            actors.Add(collision);
+            if (!actors.Contains(collision))
+                actors.Add(collision);
             Activate();
         }
     }
@@ -59,6 +60,8 @@ public class Trigger : MonoBehaviour
     {
         if (agentTags.Contains(collision.gameObject.tag))
         {
+            if (!actors.Contains(collision))
+                actors.Add(collision);
             Activate();
         }
     }
@@ -66,6 +69,7 @@ public class Trigger : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (agentTags.Contains(collision.gameObject.tag) && !permanent && flag) {
+            actors.Remove(collision);
             Deactivate(collision);
         }
     }
