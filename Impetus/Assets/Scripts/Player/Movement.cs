@@ -29,6 +29,10 @@ public class Movement : MonoBehaviour
     float airFrictionMult = 0.6f;
 
     [SerializeField]
+    [Tooltip("Sets the size of the deadzone.")]
+    float deadzone = 0.2f;
+
+    [SerializeField]
     [Header("Vertical variables")]
     [Tooltip("Adds downward RB2D.velocity constantly.")]
     float gravityConst = 0.8f;
@@ -83,7 +87,7 @@ public class Movement : MonoBehaviour
     public bool onGround;
 
     bool canJump, jumpActive, jumpCharged, sprinting;
-    int jumpBuffer, jumpTimer, jumpGraceTimer, jumpChargeTimer;
+    int jumpBuffer, jumpTimer, jumpGraceTimer, jumpChargeTimer, deadzoneMult;
     float jumpTimePercentage, _jumpChargeMult = 1;
     Vector2 velocity;
 
@@ -118,7 +122,13 @@ public class Movement : MonoBehaviour
     void MoveHorizontal()
     {
         float direction = Mathf.Sign(RB2D.velocity.x);
-        float inputDirection = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetAxis("Horizontal") > deadzone || Input.GetAxis("Horizontal") < -deadzone)
+            deadzoneMult = 1;
+        else
+            deadzoneMult = 0;
+
+        float inputDirection = Input.GetAxisRaw("Horizontal") * deadzoneMult;
         if (onGround) //Ground movement
         {
             if (inputDirection != 0)
@@ -247,7 +257,7 @@ public class Movement : MonoBehaviour
             }
         }
         //Cancelling charge
-        if ((duckingState || chargingState) && (!duckingInput || Input.GetAxisRaw("Horizontal") != 0 || !onGround))
+        if ((duckingState || chargingState) && (!duckingInput || (Input.GetAxis("Horizontal") > deadzone || Input.GetAxis("Horizontal") < -deadzone) || !onGround))
         {
             animator.SetTrigger("Idle");
             _jumpChargeMult = 1;

@@ -11,10 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InitScene.unity
     guid: ec13719cdbc8069448f5035049069401
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main Scene.unity
     guid: 9ebfcae0d4154aa4bbe3af028eb9f5f3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Scene2.unity
     guid: 288a1a570568076408bddf4fcf918b93
+  - enabled: 1
+    path: Assets/Scenes/Levels/Charge Jump.unity
+    guid: eac31f3bc6a093c49b4ab1d4fe0d5424
   m_configObjects: {}
