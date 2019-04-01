@@ -21,9 +21,12 @@ public class GlossaryController : MonoBehaviour
     List<GameObject> children = new List<GameObject>();
     [SerializeField]
     Color activeColor, inactiveColor, activeTextColor, inactiveTextColor;
+    [SerializeField]
+    float scrollDelay;
 
     int index = 0;
     bool glossaryOpen = true;
+    bool scrollLock = false;
     
     // Start is called before the first frame update
     void Start()
@@ -62,20 +65,32 @@ public class GlossaryController : MonoBehaviour
     {
         if (Input.GetButtonDown("Start"))
         {
+            index = 0;
             ToggleGlossary();
-        }
-        else if (Input.GetButtonDown("Attack") && index > 0 && glossaryOpen)
-        {
-            index--;
             OpenTab(index);
         }
-        else if (Input.GetButtonDown("Clone") && index < tabs.Count - 1 && glossaryOpen)
+        else if (Input.GetAxisRaw("Vertical") > 0 && index > 0 && glossaryOpen && !scrollLock)
+        {
+            index--;
+            scrollLock = true;
+            StartCoroutine("Scroll");
+            OpenTab(index);
+        }
+        else if (Input.GetAxisRaw("Vertical") < 0 && index < tabs.Count - 1 && glossaryOpen && !scrollLock)
         {
             index++;
+            scrollLock = true;
+            StartCoroutine("Scroll");
             OpenTab(index);
         }
 
         
+    }
+
+    IEnumerator Scroll()
+    {
+        yield return new WaitForSeconds(scrollDelay);
+        scrollLock = false;
     }
 
     void ToggleGlossary()
