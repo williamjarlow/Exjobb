@@ -90,6 +90,7 @@ public class Movement : MonoBehaviour
     int jumpBuffer, jumpTimer, jumpGraceTimer, jumpChargeTimer, deadzoneMult;
     float jumpTimePercentage, _jumpChargeMult = 1;
     Vector2 velocity;
+    ParticleSystem particleSystem;
 
     [SerializeField]
     [Header("Collision Detection")]
@@ -103,6 +104,7 @@ public class Movement : MonoBehaviour
         spriteRenderer = GetComponentInParent<SpriteRenderer>();
         parentTransform = GetComponentInParent<Transform>();
         animator = GetComponentInParent<Animator>();
+        particleSystem = GetComponentInParent<ParticleSystem>();
     }
 
     void Update()
@@ -137,6 +139,11 @@ public class Movement : MonoBehaviour
                 {
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
                         animator.SetTrigger("Running");
+
+                    if (particleSystem.isStopped && RB2D.velocity.x != 0)
+                        particleSystem.Play();
+                    else if (RB2D.velocity.x == 0)
+                        particleSystem.Stop();
 
                     //Going too fast in a direction
                     if (Mathf.Abs(RB2D.velocity.x) > sprintMaxSpeed)
@@ -181,14 +188,22 @@ public class Movement : MonoBehaviour
 
             else //Not holding any key, stopping
             {
+                if (particleSystem.isEmitting)
+                    particleSystem.Stop();
+
                 if (Mathf.Abs(RB2D.velocity.x) < frictionConst)
                     RB2D.velocity = new Vector2(0, RB2D.velocity.y);
                 else
                     RB2D.velocity -= new Vector2(frictionConst * direction, 0);
             }
+
+            
         }
         else //Air movement
         {
+            if (particleSystem.isEmitting)
+                particleSystem.Stop();
+
             if (inputDirection != 0)
             {
                 if (Input.GetButton("Sprint")) //If sprinting
