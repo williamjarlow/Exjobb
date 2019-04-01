@@ -6,6 +6,8 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField]
     float groundedLerpTimeX = 0.1f, groundedLerpTimeY = 0.1f, aerialLerpTimeX = 0.1f, aerialLerpTimeY = 0.1f, cameraDeadzone;
+    [SerializeField]
+    Vector2 xBoundary, yBoundary;
 
     [SerializeField]
     Vector3 offset;
@@ -36,6 +38,10 @@ public class CameraMovement : MonoBehaviour
             nextPosition = CalculateNextGrounded();
             Vector3 pass1 = Vector3.Lerp(new Vector3(camera.transform.position.x, 0), new Vector3(nextPosition.x, 0), groundedLerpTimeX);
             Vector3 pass2 = Vector3.Lerp(new Vector3(0, camera.transform.position.y), new Vector3(0, nextPosition.y), groundedLerpTimeY);
+            if (pass1.x < xBoundary.x || pass1.x > xBoundary.y)
+                pass1 = camera.transform.position;
+            if (pass2.y < yBoundary.x || pass2.y > yBoundary.y)
+                pass2 = camera.transform.position;
             camera.transform.position = new Vector3(pass1.x, pass2.y, nextPosition.z);
         }
         else
@@ -43,6 +49,10 @@ public class CameraMovement : MonoBehaviour
             nextPosition = CalculateNextAerial();
             Vector3 pass1 = Vector3.Lerp(new Vector3(camera.transform.position.x, 0), new Vector3(nextPosition.x, 0), aerialLerpTimeX);
             Vector3 pass2 = Vector3.Lerp(new Vector3(0, camera.transform.position.y), new Vector3(0, nextPosition.y), aerialLerpTimeY);
+            if (pass1.x < xBoundary.x || pass1.x > xBoundary.y)
+                pass1 = camera.transform.position;
+            if (pass2.y < yBoundary.x || pass2.y > yBoundary.y)
+                pass2 = camera.transform.position;
             camera.transform.position = new Vector3(pass1.x, pass2.y, nextPosition.z);
         }
 

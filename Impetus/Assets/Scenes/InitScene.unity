@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6043b9cad738644bb4857bff544a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummiesDestroyed: 0
+  sceneIndex: 2
 --- !u!4 &497925898
 Transform:
   m_ObjectHideFlags: 0
@@ -199,4 +199,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32db51b368cbd7b43b01762720362661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneIndex: 1
+  sceneIndex: 2

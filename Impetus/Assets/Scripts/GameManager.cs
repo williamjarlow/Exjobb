@@ -8,9 +8,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
-    [HideInInspector]
-    public int dummiesDestroyed = 0;
-    private int sceneIndex = 1;
+    [SerializeField]
+    int sceneIndex = 1;
 
     // Start is called before the first frame update
     void Awake()
@@ -29,8 +28,7 @@ public class GameManager : MonoBehaviour
 
     public void OnDummyDestroy()
     {
-        dummiesDestroyed++;
-        //StartCoroutine("LoadNextScene");
+        StartCoroutine("LoadNextScene");
     }
 
     IEnumerator LoadNextScene()
