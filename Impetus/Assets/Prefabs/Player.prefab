@@ -68,7 +68,10 @@ MonoBehaviour:
     m_Bits: 256
   barrierLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
+  teleportLayerMask:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!61 &1176007432850111255
 BoxCollider2D:
   m_ObjectHideFlags: 0

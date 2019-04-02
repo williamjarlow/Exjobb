@@ -69,16 +69,20 @@ public class GlossaryController : MonoBehaviour
             ToggleGlossary();
             OpenTab(index);
         }
-        else if (Input.GetAxisRaw("Vertical") > 0 && index > 0 && glossaryOpen && !scrollLock)
+        else if (Input.GetAxisRaw("Vertical") > 0 && glossaryOpen && !scrollLock)
         {
             index--;
+            if (index < 0)
+                index = tabs.Count - 1;
             scrollLock = true;
             StartCoroutine("Scroll");
             OpenTab(index);
         }
-        else if (Input.GetAxisRaw("Vertical") < 0 && index < tabs.Count - 1 && glossaryOpen && !scrollLock)
+        else if (Input.GetAxisRaw("Vertical") < 0 && glossaryOpen && !scrollLock)
         {
             index++;
+            if (index == tabs.Count)
+                index = 0;
             scrollLock = true;
             StartCoroutine("Scroll");
             OpenTab(index);

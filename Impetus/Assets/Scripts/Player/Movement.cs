@@ -92,14 +92,20 @@ public class Movement : MonoBehaviour
     Vector2 velocity;
     ParticleSystem particleSystem;
 
+    Vector3 spawnPosition;
+
     [SerializeField]
     [Header("Collision Detection")]
     [Tooltip("The layer mask used in floor detection.")]
-    LayerMask environmentLayerMask, barrierLayerMask;
+    LayerMask environmentLayerMask;
+
+    [SerializeField]
+    LayerMask barrierLayerMask, teleportLayerMask;
 
     // Use this for initialization
     void Start()
     {
+        spawnPosition = GetComponentInParent<Transform>().position;
         RB2D = GetComponentInParent<Rigidbody2D>();
         spriteRenderer = GetComponentInParent<SpriteRenderer>();
         parentTransform = GetComponentInParent<Transform>();
@@ -343,6 +349,8 @@ public class Movement : MonoBehaviour
             _jumpChargeMult = 1;
             animator.SetTrigger("Landing");
         }
+        if (temp == teleportLayerMask.value)
+            RB2D.transform.position = spawnPosition;
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
