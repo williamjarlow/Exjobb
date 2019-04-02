@@ -9,6 +9,7 @@ TagManager:
   - Indicator
   - Tab
   - Clone
+  - VictoryText
   layers:
   - Default
   - TransparentFX
