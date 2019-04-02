@@ -61,7 +61,7 @@ MonoBehaviour:
   jumpChangeTime: 7
   jumpCutoffDiv: 4
   jumpChargeTime: 15
-  jumpChargeMult: 1.5
+  jumpChargeMult: 1.4
   onGround: 0
   environmentLayerMask:
     serializedVersion: 2
@@ -193,7 +193,7 @@ MonoBehaviour:
   playerAnim: {fileID: 1176007434498348350}
   movement: {fileID: 1176007432850111254}
   skillActive: 0
-  force: 20
+  force: 25
 --- !u!114 &1176007434060902474
 MonoBehaviour:
   m_ObjectHideFlags: 0
