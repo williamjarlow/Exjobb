@@ -676,9 +676,9 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1093392178, guid: caad1ff6a91c0754db27938187e37518, type: 3}
-      propertyPath: scrollDelay
-      value: 0.15
+    - target: {fileID: 34954836, guid: caad1ff6a91c0754db27938187e37518, type: 3}
+      propertyPath: m_TagString
+      value: VictoryText
       objectReference: {fileID: 0}
     - target: {fileID: 2004669202182053822, guid: caad1ff6a91c0754db27938187e37518,
         type: 3}
@@ -714,6 +714,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1093392178, guid: caad1ff6a91c0754db27938187e37518, type: 3}
+      propertyPath: scrollDelay
+      value: 0.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caad1ff6a91c0754db27938187e37518, type: 3}

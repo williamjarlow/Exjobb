@@ -10,21 +10,15 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     int sceneIndex = 1;
-
+    float waitTime = 0;
     GameObject victoryText;
-
 
     // Start is called before the first frame update
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
         instance = gameObject.GetComponent<GameManager>();
-    }
-
-    private void Start()
-    {
-        victoryText = GameObject.FindWithTag("VictoryText");
-        victoryText.SetActive(false);
+        StartCoroutine("LoadNextScene");
     }
 
     // Update is called once per frame
@@ -41,17 +35,18 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<Movement>().enabled = false;
         FindObjectOfType<ManageSkills>().enabled = false;
         victoryText.SetActive(true);
-        StartCoroutine("LoadNextScene");
+        StartCoroutine("LoadNextScene"); 
     }
 
     IEnumerator LoadNextScene()
     {
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(++sceneIndex);
-    }
-
-    private void OnLevelWasLoaded(int level)
-    {
+        yield return new WaitForSeconds(waitTime);
+        waitTime = 2;
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(++sceneIndex, LoadSceneMode.Single);
+        while (!asyncLoadLevel.isDone)
+        {
+            yield return null;
+        };
         victoryText = GameObject.FindWithTag("VictoryText");
         victoryText.SetActive(false);
     }
