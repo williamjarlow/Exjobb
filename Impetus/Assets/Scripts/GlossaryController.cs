@@ -25,7 +25,7 @@ public class GlossaryController : MonoBehaviour
     float scrollDelay;
 
     int index = 0;
-    bool glossaryOpen = true;
+    public bool glossaryOpen = true;
     bool scrollLock = false;
     
     // Start is called before the first frame update
@@ -63,7 +63,7 @@ public class GlossaryController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Start"))
+        if (Input.GetButtonDown("Start") || (glossaryOpen && Input.GetButtonDown("Clone")))
         {
             index = 0;
             ToggleGlossary();
