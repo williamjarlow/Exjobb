@@ -113,7 +113,7 @@ public class Movement : MonoBehaviour
         particleSystem = GetComponentInParent<ParticleSystem>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         MoveHorizontal();
         MoveVertical();
