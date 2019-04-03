@@ -8,13 +8,13 @@ public class InstantiateIndependantGameObject : StateMachineBehaviour {
     [SerializeField][Tooltip("Check this if instantiated object's position should be equal to animator object's position.")]
     bool inheritPosition;
     [SerializeField]
-    Vector2 position;
+    Vector3 position;
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         if (!inheritPosition)
             Instantiate(prefab, position, new Quaternion());
         else
-            Instantiate(prefab, animator.transform.position, animator.transform.rotation);
+            Instantiate(prefab, animator.transform.position + position, animator.transform.rotation);
 	}
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

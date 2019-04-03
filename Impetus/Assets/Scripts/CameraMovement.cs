@@ -35,7 +35,7 @@ public class CameraMovement : MonoBehaviour
     {
         if (playerMovement.onGround)
         {
-            nextPosition = CalculateNextGrounded();
+            nextPosition = CalculateNextAerial();
             Vector3 pass1 = Vector3.Lerp(new Vector3(camera.transform.position.x, 0), new Vector3(nextPosition.x, 0), groundedLerpTimeX);
             Vector3 pass2 = Vector3.Lerp(new Vector3(0, camera.transform.position.y), new Vector3(0, nextPosition.y), groundedLerpTimeY);
             if (pass1.x < xBoundary.x || pass1.x > xBoundary.y)

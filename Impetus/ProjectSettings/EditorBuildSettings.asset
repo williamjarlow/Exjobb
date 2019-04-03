@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Door.unity
     guid: 5d40e6186465c954e9ce8a0b6ce5d843
+  - enabled: 1
+    path: Assets/Scenes/Levels/Final level.unity
+    guid: b2c5855e4b6d79e44a60d14a3f495e5f
   m_configObjects: {}
