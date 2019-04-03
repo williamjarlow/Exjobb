@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Downward Areal.unity
     guid: d40158684dd92224fb6ab5892a63221f
   - enabled: 1
-    path: Assets/Scenes/Levels/Door.unity
+    path: Assets/Scenes/Levels/Barrier.unity
     guid: e95d1c5c3f9f1b54799735fe87e7ab55
+  - enabled: 1
+    path: Assets/Scenes/Levels/Door.unity
+    guid: 5d40e6186465c954e9ce8a0b6ce5d843
   m_configObjects: {}
