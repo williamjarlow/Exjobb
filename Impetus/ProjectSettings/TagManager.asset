@@ -10,6 +10,7 @@ TagManager:
   - Tab
   - Clone
   - VictoryText
+  - Target
   layers:
   - Default
   - TransparentFX

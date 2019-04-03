@@ -61,7 +61,7 @@ MonoBehaviour:
   jumpChangeTime: 7
   jumpCutoffDiv: 4
   jumpChargeTime: 15
-  jumpChargeMult: 1.4
+  jumpChargeMult: 1.6
   onGround: 0
   environmentLayerMask:
     serializedVersion: 2

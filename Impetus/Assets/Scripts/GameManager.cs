@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
+    int targetCount = 1;
     [SerializeField]
     int sceneIndex = 1;
     float waitTime = 0;
@@ -31,11 +32,16 @@ public class GameManager : MonoBehaviour
 
     public void OnDummyDestroy()
     {
-        GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        FindObjectOfType<Movement>().enabled = false;
-        FindObjectOfType<ManageSkills>().enabled = false;
-        victoryText.SetActive(true);
-        StartCoroutine("LoadNextScene"); 
+        targetCount--;
+        Debug.Log(targetCount);
+        if (targetCount == 0)
+        {
+            GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            FindObjectOfType<Movement>().enabled = false;
+            FindObjectOfType<ManageSkills>().enabled = false;
+            victoryText.SetActive(true);
+            StartCoroutine("LoadNextScene");
+        }
     }
 
     IEnumerator LoadNextScene()
@@ -49,5 +55,6 @@ public class GameManager : MonoBehaviour
         };
         victoryText = GameObject.FindWithTag("VictoryText");
         victoryText.SetActive(false);
+        targetCount = GameObject.FindGameObjectsWithTag("Target").Length;
     }
 }
