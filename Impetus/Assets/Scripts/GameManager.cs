@@ -52,9 +52,9 @@ public class GameManager : MonoBehaviour
     {
         victoryText.SetActive(true);
         victoryText.GetComponent<Text>().text = (maxTargets - targetCount).ToString() + " / " + maxTargets;
-        yield return new WaitForSeconds(waitTime);
-        victoryText.SetActive(false);
+        yield return new WaitForSeconds(1);
         GameObject.FindWithTag("Player").transform.position = new Vector3();
+        victoryText.SetActive(false);
     }
 
     IEnumerator LoadNextScene()

@@ -102,6 +102,8 @@ public class Movement : MonoBehaviour
     [SerializeField]
     LayerMask barrierLayerMask, teleportLayerMask;
 
+    bool jump;
+
     // Use this for initialization
     void Start()
     {
@@ -111,6 +113,12 @@ public class Movement : MonoBehaviour
         parentTransform = GetComponentInParent<Transform>();
         animator = GetComponentInParent<Animator>();
         particleSystem = GetComponentInParent<ParticleSystem>();
+    }
+
+    void Update()
+    {
+        if (!jump && Input.GetButtonDown("Jump"))
+            jump = true;
     }
 
     void FixedUpdate()
@@ -125,6 +133,7 @@ public class Movement : MonoBehaviour
         jumpActive = true;
         animator.SetTrigger("Jumping");
         jumpChargeTimer = 0;
+        jump = false;
     }
 
     void MoveHorizontal()
@@ -291,7 +300,7 @@ public class Movement : MonoBehaviour
         canJump = (onGround == true || jumpGraceTimer > 0) && jumpActive == false;
         jumpGraceTimer = onGround ? jumpGraceMax : jumpGraceTimer - 1;
 
-        if (Input.GetButtonDown("Jump") && canJump)
+        if (jump && canJump)
         {
             Jump();
         }
@@ -300,13 +309,7 @@ public class Movement : MonoBehaviour
 
         if (jumpActive && jumpTimer < jumpMaxTime)
         {
-            /*Vector2 size = spriteRenderer.sprite.rect.size / (spriteRenderer.sprite.pixelsPerUnit*1.2f);
-            RaycastHit2D raycastHit2D = Physics2D.BoxCast(GetComponentInParent<Transform>().position, size, 0, Vector2.up, Mathf.Abs(RB2D.velocity.y*Time.deltaTime), environmentLayerMask.value);
-            bool ceilingCollision =  raycastHit2D.collider != null;
-
-            if (ceilingCollision)
-                jumpTimer = jumpMaxTime;
-            else*/ if (jumpTimer < jumpMinTime || Input.GetButton("Jump"))
+            if (jumpTimer < jumpMinTime || Input.GetButton("Jump"))
             {
                 //If at the end of the jump
                 if (jumpTimer >= jumpChangeTime)
@@ -338,6 +341,8 @@ public class Movement : MonoBehaviour
         //Add gravity
         if (RB2D.velocity.y > -terminalVelocity)
             RB2D.velocity -= new Vector2(0, gravityConst);
+        if(!Input.GetButtonDown("Jump"))
+            jump = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

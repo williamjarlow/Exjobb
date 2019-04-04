@@ -1366,11 +1366,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 3726966195562493555, guid: caad1ff6a91c0754db27938187e37518,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3726966195562493519, guid: caad1ff6a91c0754db27938187e37518,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1476,9 +1471,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 34954836, guid: caad1ff6a91c0754db27938187e37518, type: 3}
-      propertyPath: m_TagString
-      value: VictoryText
+    - target: {fileID: 3726966195562493517, guid: caad1ff6a91c0754db27938187e37518,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 768
+      objectReference: {fileID: 0}
+    - target: {fileID: 8628307259470743020, guid: caad1ff6a91c0754db27938187e37518,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 384
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caad1ff6a91c0754db27938187e37518, type: 3}
@@ -2477,7 +2478,7 @@ PrefabInstance:
     - target: {fileID: 53810950341429855, guid: 69a9f2f72b3bf574099b1567a388e531,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.675
+      value: 29.651
       objectReference: {fileID: 0}
     - target: {fileID: 53810950341429855, guid: 69a9f2f72b3bf574099b1567a388e531,
         type: 3}
@@ -2527,7 +2528,7 @@ PrefabInstance:
     - target: {fileID: 53810950341429854, guid: 69a9f2f72b3bf574099b1567a388e531,
         type: 3}
       propertyPath: m_Size.y
-      value: 5.6577873
+      value: 33.60841
       objectReference: {fileID: 0}
     - target: {fileID: 53810950341429849, guid: 69a9f2f72b3bf574099b1567a388e531,
         type: 3}
