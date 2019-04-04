@@ -5,11 +5,18 @@ using UnityEngine;
 public class TargetArrow : MonoBehaviour
 {
     GameObject player;
+    [SerializeField]
+    GameObject target;
+    SpriteRenderer sprite;
+
+    [SerializeField]
+    float minSize, maxSize, maxDist;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -21,16 +28,30 @@ public class TargetArrow : MonoBehaviour
 
     void SetPosition()
     {
-        var dist = (transform.position - Camera.main.transform.position).z;
-        var leftBorder = Camera.main.ViewportToWorldPoint(Vector3(0, 0, dist)).x;
-        var rightBorder = Camera.main.ViewportToWorldPoint(Vector3(1, 0, dist)).x;
+        float yExtent = 1.95f * Camera.main.orthographicSize; // Get vertical world-space extent.
+        float xExtent = yExtent * Camera.main.aspect; // Get horizontal world-space extent.
+        Vector3 center = Camera.main.transform.position; // Get world-space center.
+        Bounds bounds = new Bounds(center, new Vector2(xExtent, yExtent));
+           
+        Vector2 targetPos = target.transform.position;
+        Vector2 closestPoint = new Vector2();
+        if (!bounds.Contains(targetPos))
+        {
+            closestPoint = bounds.ClosestPoint(targetPos);
+            closestPoint -= (Vector2)Vector3.Normalize((Vector3)targetPos - (Vector3)closestPoint)*2;
+        }
 
-        transform.position.x = Mathf.Clamp(transform.position.x, leftBorder, rightBorder);
+        float percent = 1 - Mathf.Clamp(Vector3.Distance(targetPos, closestPoint) / maxDist, 0, 1);
+        float scale = (1 - percent) * minSize + (percent * maxSize);
+        transform.localScale = new Vector3(scale, scale);
+
+        transform.position = closestPoint;
+        sprite.enabled = !target.GetComponent<SpriteRenderer>().isVisible;
     }
 
     void SetRotation()
     {
-        Vector3 dir = player.transform.position - transform.parent.position;
+        Vector3 dir = player.transform.position - target.transform.position;
         dir = player.transform.InverseTransformDirection(dir);
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 

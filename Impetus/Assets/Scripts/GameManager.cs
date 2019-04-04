@@ -45,10 +45,10 @@ public class GameManager : MonoBehaviour
             StartCoroutine("LoadNextScene");
         }
         else
-            StartCoroutine("YEETHAW");
+            StartCoroutine("DisplayTargetProgress");
     }
 
-    IEnumerator YEETHAW()
+    IEnumerator DisplayTargetProgress()
     {
         victoryText.SetActive(true);
         victoryText.GetComponent<Text>().text = (maxTargets - targetCount).ToString() + " / " + maxTargets;
