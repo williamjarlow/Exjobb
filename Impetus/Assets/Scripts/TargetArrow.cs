@@ -21,7 +21,11 @@ public class TargetArrow : MonoBehaviour
 
     void SetPosition()
     {
-        
+        var dist = (transform.position - Camera.main.transform.position).z;
+        var leftBorder = Camera.main.ViewportToWorldPoint(Vector3(0, 0, dist)).x;
+        var rightBorder = Camera.main.ViewportToWorldPoint(Vector3(1, 0, dist)).x;
+
+        transform.position.x = Mathf.Clamp(transform.position.x, leftBorder, rightBorder);
     }
 
     void SetRotation()
