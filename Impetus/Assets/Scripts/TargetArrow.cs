@@ -22,6 +22,8 @@ public class TargetArrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target == null)
+            Destroy(gameObject);
         SetRotation();
         SetPosition();
     }
