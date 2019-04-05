@@ -23,6 +23,9 @@ public class GenerateClone : Skill
     public override bool SkillIsUsable()
     {
         int cloneCount = GameObject.FindGameObjectsWithTag("Clone").Length;
-        return base.SkillIsUsable() && cloneCount == 0 && !FindObjectOfType<GlossaryController>().glossaryOpen;
+        bool glossaryOpen = false;
+        if (FindObjectOfType<GlossaryController>() != null && FindObjectOfType<GlossaryController>().glossaryOpen)
+            glossaryOpen = true;
+        return base.SkillIsUsable() && cloneCount == 0 && !glossaryOpen;
     }
 }
