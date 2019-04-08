@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Donezo.unity
     guid: 53706d3a486334247a6643632cad9010
+  - enabled: 1
+    path: Assets/Scenes/ScreenshotScene.unity
+    guid: 78235908ef092f74da39938e886104c1
   m_configObjects: {}

@@ -22,7 +22,9 @@ public class GlossaryController : MonoBehaviour
     [SerializeField]
     Color activeColor, inactiveColor, activeTextColor, inactiveTextColor;
     [SerializeField]
-    float scrollDelay;
+    float scrollDelay, offset;
+    [SerializeField]
+    GameObject scrollArrows;
 
     int index = 0;
     public bool glossaryOpen = true;
@@ -122,6 +124,7 @@ public class GlossaryController : MonoBehaviour
         tabs[index].indicator.color = activeColor;
         tabs[index].title.color = activeTextColor;
         tabs[index].content.SetActive(true);
+        scrollArrows.GetComponent<RectTransform>().position = new Vector3(scrollArrows.GetComponent<RectTransform>().position.x, tabs[index].indicator.GetComponent<RectTransform>().position.y + offset, scrollArrows.GetComponent<RectTransform>().position.z);
     }
 
     void CloseTabs()
