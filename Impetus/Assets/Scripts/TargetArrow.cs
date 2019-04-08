@@ -24,8 +24,11 @@ public class TargetArrow : MonoBehaviour
     {
         if (target == null)
             Destroy(gameObject);
-        SetRotation();
-        SetPosition();
+        else
+        {
+            SetRotation();
+            SetPosition();
+        }
     }
 
     void SetPosition()

@@ -44,6 +44,8 @@ public class CloneMovement : MonoBehaviour
 
     void MoveVertical()
     {
+        if(Input.GetAxisRaw("Horizontal") != 0)
+            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") > 0;
         //Add gravity
         if (RB2D.velocity.y > -terminalVelocity)
             RB2D.velocity -= new Vector2(0, gravityConst);

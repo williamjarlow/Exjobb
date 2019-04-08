@@ -179,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 5876728763832471535, guid: 1d0158b8858697441911907917c60abb, type: 3}
   inheritPosition: 1
-  position: {x: 0, y: 0}
+  position: {x: 0, y: 0, z: 0}
 --- !u!1101 &1101019105926670300
 AnimatorStateTransition:
   m_ObjectHideFlags: 3

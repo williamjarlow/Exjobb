@@ -7,6 +7,7 @@ public class DummyBehaviour : MonoBehaviour
 {
     GameObject player;
     SpriteRenderer spriteRenderer;
+    bool destroyed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +23,9 @@ public class DummyBehaviour : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("AttackHitbox"))
+        if (other.CompareTag("AttackHitbox") && !destroyed)
         {
+            destroyed = true;
             ClassTypeReference skillUsed = other.GetComponent<AttackBehaviour>().skill;
             GetComponentInParent<ParticleManager>().EmitParticles(skillUsed);
             GameManager.instance.OnDummyDestroy();

@@ -70,23 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8565b44023176c04db8e164e049877c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
-  sprintMaxSpeed: 15
-  accelConst: 2
-  sprintAccelConst: 2.5
-  frictionConst: 1
-  airFrictionMult: 0.8
   gravityConst: 1.2
   terminalVelocity: 25
-  jumpHeight: 25
-  jumpBufferMax: 3
-  jumpGraceMax: 2
-  jumpMaxTime: 12
-  jumpMinTime: 2
-  jumpChangeTime: 7
-  jumpCutoffDiv: 4
-  jumpChargeTime: 15
-  jumpChargeMult: 1.5
   onGround: 0
   environmentLayerMask:
     serializedVersion: 2
@@ -315,6 +300,7 @@ GameObject:
   - component: {fileID: 5876728763891284105}
   - component: {fileID: 5876728763891284102}
   - component: {fileID: 5876728763891284103}
+  - component: {fileID: 7797903908969529948}
   m_Layer: 0
   m_Name: Clone Skills
   m_TagString: Untagged
@@ -352,6 +338,7 @@ MonoBehaviour:
     checked. For example, a neutral attack that can be performed at any time should
     be low on the list, while a directional aerial attack should be higher.
   skillOrder:
+  - {fileID: 7797903908969529948}
   - {fileID: 5876728763891284105}
   - {fileID: 5876728763891284103}
   - {fileID: 5876728763891284102}
@@ -406,6 +393,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paramName: RightAttack
+  overrideMovement: 0
+  overridable: 0
+  player: {fileID: 5876728763832471535}
+  playerAnim: {fileID: 5876728763832471534}
+  movement: {fileID: 0}
+  skillActive: 0
+--- !u!114 &7797903908969529948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876728763891284098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f685ccd7a749d334c97e93d1f064a1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paramName: Idle
   overrideMovement: 0
   overridable: 0
   player: {fileID: 5876728763832471535}
