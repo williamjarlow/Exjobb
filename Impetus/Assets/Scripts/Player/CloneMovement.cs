@@ -19,7 +19,7 @@ public class CloneMovement : MonoBehaviour
     Transform parentTransform;
 
     [HideInInspector]
-    public bool onGround;
+    public bool onGround = false;
 
     Vector2 velocity;
 

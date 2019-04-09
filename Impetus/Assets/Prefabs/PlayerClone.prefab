@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 5876728763891284102}
   - component: {fileID: 5876728763891284103}
   - component: {fileID: 7797903908969529948}
+  - component: {fileID: 3980802873865714126}
   m_Layer: 0
   m_Name: Clone Skills
   m_TagString: Untagged
@@ -339,6 +340,7 @@ MonoBehaviour:
     be low on the list, while a directional aerial attack should be higher.
   skillOrder:
   - {fileID: 7797903908969529948}
+  - {fileID: 3980802873865714126}
   - {fileID: 5876728763891284105}
   - {fileID: 5876728763891284103}
   - {fileID: 5876728763891284102}
@@ -418,3 +420,23 @@ MonoBehaviour:
   playerAnim: {fileID: 5876728763832471534}
   movement: {fileID: 0}
   skillActive: 0
+--- !u!114 &3980802873865714126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876728763891284098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1336b4beecbbe844b9f565c6535a94ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paramName: DownAttack
+  overrideMovement: 0
+  overridable: 0
+  player: {fileID: 5876728763832471535}
+  playerAnim: {fileID: 5876728763832471534}
+  movement: {fileID: 0}
+  skillActive: 0
+  force: 25
