@@ -17,6 +17,8 @@ public class Tab
 
 public class GlossaryController : MonoBehaviour
 {
+    [SerializeField]
+    Text errorText;
     List<Tab> tabs = new List<Tab>();
     List<GameObject> children = new List<GameObject>();
     [SerializeField]
@@ -27,6 +29,8 @@ public class GlossaryController : MonoBehaviour
     GameObject scrollArrows;
 
     int index = 0;
+    [SerializeField]
+    bool glossaryEnabled = true;
     public bool glossaryOpen = true;
     bool scrollLock = false;
     
@@ -65,32 +69,46 @@ public class GlossaryController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Start") || (glossaryOpen && Input.GetButtonDown("Clone")))
+        if (glossaryEnabled)
         {
-            index = 0;
-            ToggleGlossary();
-            OpenTab(index);
-        }
-        else if (Input.GetAxisRaw("Vertical") > 0 && glossaryOpen && !scrollLock)
-        {
-            index--;
-            if (index < 0)
-                index = tabs.Count - 1;
-            scrollLock = true;
-            StartCoroutine("Scroll");
-            OpenTab(index);
-        }
-        else if (Input.GetAxisRaw("Vertical") < 0 && glossaryOpen && !scrollLock)
-        {
-            index++;
-            if (index == tabs.Count)
+            if (Input.GetButtonDown("Start") || (glossaryOpen && Input.GetButtonDown("Clone")))
+            {
                 index = 0;
-            scrollLock = true;
-            StartCoroutine("Scroll");
-            OpenTab(index);
+                ToggleGlossary();
+                OpenTab(index);
+            }
+            else if (Input.GetAxisRaw("Vertical") > 0 && glossaryOpen && !scrollLock)
+            {
+                index--;
+                if (index < 0)
+                    index = tabs.Count - 1;
+                scrollLock = true;
+                StartCoroutine("Scroll");
+                OpenTab(index);
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0 && glossaryOpen && !scrollLock)
+            {
+                index++;
+                if (index == tabs.Count)
+                    index = 0;
+                scrollLock = true;
+                StartCoroutine("Scroll");
+                OpenTab(index);
+            }
         }
-
+        else if (Input.GetButtonDown("Start"))
+        {
+            StartCoroutine("DisplayError");
+        }
         
+    }
+
+    IEnumerator DisplayError()
+    {
+        errorText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        errorText.gameObject.SetActive(false);
+        StopAllCoroutines();
     }
 
     IEnumerator Scroll()
