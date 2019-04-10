@@ -298,10 +298,10 @@ GameObject:
   - component: {fileID: 5876728763891284101}
   - component: {fileID: 5876728763891284107}
   - component: {fileID: 5876728763891284105}
-  - component: {fileID: 5876728763891284102}
-  - component: {fileID: 5876728763891284103}
   - component: {fileID: 7797903908969529948}
   - component: {fileID: 3980802873865714126}
+  - component: {fileID: 2871794624236198271}
+  - component: {fileID: 4419763614852429744}
   m_Layer: 0
   m_Name: Clone Skills
   m_TagString: Untagged
@@ -342,8 +342,8 @@ MonoBehaviour:
   - {fileID: 7797903908969529948}
   - {fileID: 3980802873865714126}
   - {fileID: 5876728763891284105}
-  - {fileID: 5876728763891284103}
-  - {fileID: 5876728763891284102}
+  - {fileID: 4419763614852429744}
+  - {fileID: 2871794624236198271}
 --- !u!114 &5876728763891284105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,44 +357,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paramName: UpAttack
-  overrideMovement: 0
-  overridable: 0
-  player: {fileID: 5876728763832471535}
-  playerAnim: {fileID: 5876728763832471534}
-  movement: {fileID: 0}
-  skillActive: 0
---- !u!114 &5876728763891284102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5876728763891284098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d776d7335c6c6344849e5def4e6d16c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paramName: LeftAttack
-  overrideMovement: 0
-  overridable: 0
-  player: {fileID: 5876728763832471535}
-  playerAnim: {fileID: 5876728763832471534}
-  movement: {fileID: 0}
-  skillActive: 0
---- !u!114 &5876728763891284103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5876728763891284098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d73d76efb61f91f4f9c0af6018a58760, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paramName: RightAttack
   overrideMovement: 0
   overridable: 0
   player: {fileID: 5876728763832471535}
@@ -440,3 +402,41 @@ MonoBehaviour:
   movement: {fileID: 0}
   skillActive: 0
   force: 25
+--- !u!114 &2871794624236198271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876728763891284098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e6068b61928cf41beee62975080b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paramName: LeftAttack
+  overrideMovement: 0
+  overridable: 0
+  player: {fileID: 5876728763832471535}
+  playerAnim: {fileID: 5876728763832471534}
+  movement: {fileID: 0}
+  skillActive: 0
+--- !u!114 &4419763614852429744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876728763891284098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec222b97bd7cf3409bc40204b07e40d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paramName: RightAttack
+  overrideMovement: 0
+  overridable: 0
+  player: {fileID: 5876728763832471535}
+  playerAnim: {fileID: 5876728763832471534}
+  movement: {fileID: 0}
+  skillActive: 0

@@ -6,14 +6,11 @@ public class GenerateClone : Skill
 {
     public override void OnSkillStart()
     {
-        GameObject clone = GameObject.FindWithTag("Clone");
-        if (clone != null)
-            clone.GetComponent<SpriteRenderer>().flipX = player.GetComponent<SpriteRenderer>().flipX;
 
     }
     public override void OnSkillUpdate()
     {
-
+        
     }
     public override void OnSkillStop()
     {
