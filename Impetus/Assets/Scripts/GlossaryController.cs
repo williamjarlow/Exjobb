@@ -24,7 +24,7 @@ public class GlossaryController : MonoBehaviour
     [SerializeField]
     Color activeColor, inactiveColor, activeTextColor, inactiveTextColor;
     [SerializeField]
-    float scrollDelay, offset;
+    float scrollDelay, offset, disabledTextDuration;
     [SerializeField]
     GameObject scrollArrows;
 
@@ -67,7 +67,7 @@ public class GlossaryController : MonoBehaviour
         ToggleGlossary();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (glossaryEnabled)
         {
@@ -106,7 +106,7 @@ public class GlossaryController : MonoBehaviour
     IEnumerator DisplayError()
     {
         errorText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(disabledTextDuration);
         errorText.gameObject.SetActive(false);
         StopAllCoroutines();
     }
