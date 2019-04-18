@@ -28,7 +28,21 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R)){
-            SceneManager.LoadScene(sceneIndex);
+            waitTime = 0;
+            sceneIndex--;
+            StartCoroutine("LoadNextScene");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            waitTime = 0;
+            sceneIndex -= 2;
+            sceneIndex = sceneIndex <= 0 ? 0 : sceneIndex;
+            StartCoroutine("LoadNextScene");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            waitTime = 0;
+            StartCoroutine("LoadNextScene");
         }
     }
 
