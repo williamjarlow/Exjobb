@@ -11,8 +11,7 @@ public class GameManager : MonoBehaviour
 
     int targetCount = 1;
     int maxTargets;
-    [SerializeField]
-    int sceneIndex = 1;
+    public int sceneIndex = 1;
     float waitTime = 0;
     GameObject victoryText;
 
@@ -42,6 +41,13 @@ public class GameManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             waitTime = 0;
+            sceneIndex = sceneIndex >= 8 ? 7 : sceneIndex;
+            StartCoroutine("LoadNextScene");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            waitTime = 0;
+            sceneIndex = 0;
             StartCoroutine("LoadNextScene");
         }
     }
@@ -54,6 +60,8 @@ public class GameManager : MonoBehaviour
             GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             FindObjectOfType<Movement>().enabled = false;
             FindObjectOfType<ManageSkills>().enabled = false;
+            GameObject.FindWithTag("Player").GetComponentInChildren<ParticleSystem>().Stop();
+
             victoryText.SetActive(true);
             victoryText.GetComponent<Text>().text = "Good job!";
             StartCoroutine("LoadNextScene");
@@ -81,7 +89,8 @@ public class GameManager : MonoBehaviour
             yield return null;
         };
         victoryText = GameObject.FindWithTag("VictoryText");
-        victoryText.SetActive(false);
+        if(victoryText != null)
+            victoryText.SetActive(false);
         targetCount = GameObject.FindGameObjectsWithTag("Target").Length;
         maxTargets = targetCount;
     }
