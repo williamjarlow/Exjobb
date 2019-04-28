@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         };
+        GetComponentInChildren<Timer>().NextSplit();
         victoryText = GameObject.FindWithTag("VictoryText");
         if(victoryText != null)
             victoryText.SetActive(false);
