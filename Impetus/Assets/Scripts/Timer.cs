@@ -95,7 +95,10 @@ public class Timer : MonoBehaviour
             fileName = fileName.Replace(' ', '_');
             fileName = fileName.Replace(':', ';');
 
-            var file = File.Open(fileName + ".txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            while (File.Exists(fileName + ".txt"))
+                fileName += "a";
+
+            var file = File.Open(fileName + ".txt", FileMode.CreateNew, FileAccess.ReadWrite);
             var writer = new StreamWriter(file);
 
             foreach (Text text in splitTexts)
